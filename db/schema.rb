@@ -10,9 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_08_10_150026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "interests", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.string "status"
+    t.bigint "asker_id"
+    t.bigint "receiver_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["asker_id"], name: "index_requests_on_asker_id"
+    t.index ["receiver_id"], name: "index_requests_on_receiver_id"
+  end
+
+  create_table "user_interests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "interest_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interest_id"], name: "index_user_interests_on_interest_id"
+    t.index ["user_id"], name: "index_user_interests_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.integer "age"
+    t.string "profession"
+    t.string "city"
+    t.text "answer1"
+    t.text "answer2"
+    t.text "answer3"
+    t.boolean "mentor"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "requests", "users", column: "asker_id"
+  add_foreign_key "requests", "users", column: "receiver_id"
+  add_foreign_key "user_interests", "interests"
+  add_foreign_key "user_interests", "users"
 end
