@@ -1,5 +1,11 @@
-<h1>Users#index</h1>
+<h1>Find your Mentor/Mentee</h1>
 
-<% @users.each do |user| %>
-<%= user.name %>
-<% end %>
+<ul>
+  <% @users.each do |user| %>
+  <li>
+    <h2><%= link_to user.name, user_path(user)%> (<%= user.age %>)</h2>
+    <p>Profession: <%= user.profession %></br>
+    Location: <%= user.city %></p>
+  </li>
+  <% end %>
+</ul>
