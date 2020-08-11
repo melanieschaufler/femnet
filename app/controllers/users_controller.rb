@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       # Sign in the user by passing validation in case their password changed
       # bypass_sign_in(@user)
-      # redirect_to show_user_path
+      redirect_to user_path(@user)
     else
       render "edit"
     end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   def user_params
     # NOTE: Using `strong_parameters` gem
-    params.require(:user).permit(:name, :profession)
+    params.require(:user).permit(:name, :profession, :age, :photo, :city, :answer1, :answer2, :answer3, :resume)
   end
 
 end
