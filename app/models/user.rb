@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :age, inclusion: 16..99
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  validates :answer1, :answer2, :answer3, length: { in: 100..500 }
+
   has_many :user_interests, dependent: :destroy
   has_many :interests, through: :user_interests, dependent: :destroy
   
