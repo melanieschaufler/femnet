@@ -9,4 +9,7 @@ class User < ApplicationRecord
 
   has_many :requests_as_asker, source: :request, foreign_key: :asker_id
   has_many :requests_as_receiver, source: :request, foreign_key: :receiver_id
+
+  has_one_attached :photo
+  has_one_attached :resume
 end

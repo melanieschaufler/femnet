@@ -1,10 +1,23 @@
 
-<h1><%= @user.name %></h1>
-
 <% if @user.mentor %>
   <p>Mentor</p>
 <% else %>
   <p>Mentee</p>
+<% end %>
+
+<h1><%= @user.name %></h1>
+<p><%= @user.age %></p>
+<p><%= @user.profession %></p>
+<p>Question 1</br><strong><%= @user.answer1 %></strong></p>
+<p>Question 2</br><strong><%= @user.answer2 %></strong></p>
+<p>Question 3</br><strong><%= @user.answer3 %></strong></p>
+
+<% if @user.photo.present? %>
+<%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
+<% if @user.resume.present? %>
+<%= cl_image_tag @user.resume.key, height: 300, width: 400, crop: :fill %>
 <% end %>
 
 <% if current_user == @user %>
