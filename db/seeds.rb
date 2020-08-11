@@ -2,20 +2,20 @@ puts "Cleaning users"
 User.destroy_all
 puts "creating users"
 
-louisa = {email: "louisa@web.de", password: "12345678", name: "Louisa Scheiter", age: 24, profession: "Consultant", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-carla = {email: "carla@web.de", password: "12345678", name: "Carla Schell", age: 24, profession: "Manager", city: "Berlin", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
-philip = {email: "philipp@web.de", password: "12345678", name: "Philipp Moeller", age: 24, profession: "Consultant", city: "Berlin", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+louisa = {email: "louisa@web.de", password: "12345678", name: "Louisa Scheiter", age: 25, profession: "Consultant", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+carla = {email: "carla@web.de", password: "12345678", name: "Carla Schell", age: 22, profession: "Manager", city: "Berlin", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+melanie = {email: "melanie@web.de", password: "12345678", name: "Melanie Schaufler", age: 55, profession: "Consultant", city: "Berlin", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
 luissa = {email: "luissa@web.de", password: "12345678", name: "Luissa Schemuth", age: 24, profession: "Productmanager", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-fabian = {email: "fabian@web.de", password: "12345678", name: "Fabian Schweizer", age: 24, profession: "Consultant", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
-felipe = {email: "felipe@web.de", password: "12345678", name: "Felipe Lugo", age: 24, profession: "Systemadmin", city: "Hamburg", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
-paul = {email: "paul@web.de", password: "12345678", name: "Paul Wittchen", age: 24, profession: "Self-employed", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-peter = {email: "peter@web.de", password: "12345678", name: "Peter Magpentay", age: 24, profession: "Finance Manager", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-dion = {email: "dion@web.de", password: "12345678", name: "Dion Shahini", age: 24, profession: "Driver", city: "Munich", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-max = {email: "max@web.de", password: "12345678", name: "Max Mustermann", age: 24, profession: "Consultant", city: "Hamburg", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-tung = {email: "tung@web.de", password: "12345678", name: "Tung Nguyen", age: 24, profession: "Copywriter", city: "Cologne", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-nico = {email: "nico@web.de", password: "12345678", name: "Nicolo Grazie", age: 24, profession: "Cook", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+fabiola = {email: "fabiola@web.de", password: "12345678", name: "Fabian Schweizer", age: 54, profession: "Consultant", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
+felipa = {email: "felipa@web.de", password: "12345678", name: "Felipa Lugo", age: 35, profession: "Systemadmin", city: "Hamburg", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
+paula = {email: "paula@web.de", password: "12345678", name: "Paula Wittchen", age: 22, profession: "Self-employed", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+petra = {email: "petra@web.de", password: "12345678", name: "Petra Magpentay", age: 24, profession: "Finance Manager", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+donna = {email: "donna@web.de", password: "12345678", name: "Donna Shahini", age: 45, profession: "Driver", city: "Munich", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
+maxi = {email: "maxi@web.de", password: "12345678", name: "Maximiliane Mustermann", age: 24, profession: "Consultant", city: "Hamburg", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+celine = {email: "celine@web.de", password: "12345678", name: "Celine Nguyen", age: 34, profession: "Copywriter", city: "Cologne", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+nico = {email: "nico@web.de", password: "12345678", name: "Nicole Mayer", age: 60, profession: "Cook", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
 
-[louisa, carla, philip, luissa, fabian, felipe, paul, peter, dion, max, tung, nico].each do |attributes|
+[louisa, carla, melanie, luissa, fabiola, felipa, paula, petra, donna, maxi, celine, nico].each do |attributes|
 user = User.create!(attributes)
 puts "Created #{user.email}"
 end
@@ -47,4 +47,3 @@ puts "Finished"
 # user = Request.create!(attributes)
 # puts "Created #{request.id}"
 # end
-puts "Finished"
