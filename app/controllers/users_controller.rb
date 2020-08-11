@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.where(mentor: true)
+    if current_user.mentor == false
+      @users = User.where(mentor: true)
+    else
+      @users = User.where(mentor: false)
+    end
   end
 
   def show
