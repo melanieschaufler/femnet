@@ -1,6 +1,5 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
-<% User.all.each do |user| %>
-<p><%= user.name %></p>
-<% end %>
+<p>Welcome to femnet</p>
+<%= link_to "#{current_user.name}" , user_path(current_user)%> <%= link_to "Edit profile", edit_user_path(current_user)%>
