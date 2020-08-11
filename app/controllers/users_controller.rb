@@ -1,20 +1,21 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
     if current_user.mentor == false
-      @users = User.where(mentor: true)
+      @users = policy_scope(User.where(mentor: true))
     else
-      @users = User.where(mentor: false)
+      @users = policy_scope(User.where(mentor: false))
     end
   end
 
   def show
     @user = User.find_by_id(params[:id])
+    authorize @user
   end
 
   def edit
-    @user = current_user
   end
 
   def update
@@ -28,7 +29,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    redirect_to root_path, notice: 'Your Profile was successfully deleted.'
+  end
+
   private
+
+  def set_user
+    @user = User.find_by_id(params[:id])
+    authorize @user
+  end
 
   def user_params
     # NOTE: Using `strong_parameters` gem

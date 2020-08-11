@@ -20,6 +20,7 @@
                 input_html: { autocomplete: "name" } %>
     <%= f.input :age,
                 required: true,
+                hint: ('16 is the minimum age'),
                 input_html: { autocomplete: "age" } %>
     <%= f.input :profession,
                 required: true,
@@ -28,16 +29,19 @@
                 required: true,
                 input_html: { autocomplete: "city" } %>
     <%= f.input :answer1,
-                label: 'Frage 1',
+                label: 'Who are you, what defines you and what have you accomplished so far?',
                 required: true,
+                hint: ('Answer needs to be 100 to 500 characters long.'),
                 input_html: { autocomplete: "answer1" } %>
     <%= f.input :answer2,
-                label: 'Frage 2',
+                label: 'Where do you see yourself in the future?',
                 required: true,
+                hint: ('Answer needs to be 100 to 500 characters long.'),
                 input_html: { autocomplete: "answer2" } %>
     <%= f.input :answer3,
-                label: 'Frage 3',
+                label: 'What are you expecting from FemNet?',
                 required: true,
+                hint: ('Answer needs to be 100 to 500 characters long.'),
                 input_html: { autocomplete: "answer3" } %>
     <%= f.label "Tick if you want to be a Mentor" %>
     <%= f.check_box :mentor,
