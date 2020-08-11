@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :user_interests, dependent: :destroy
+  has_many :user_interests
   has_many :interests, through: :user_interest, dependent: :destroy
 
   has_many :requests_as_asker, source: :request, foreign_key: :asker_id

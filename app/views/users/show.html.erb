@@ -1,4 +1,13 @@
-<%= current_user.name %>
+<h1><%= @user.name %></h1>
 
+<% if @user.mentor %>
+  <p>Mentor</p>
+<% else %>
+  <p>Mentee</p>
+<% end %>
+
+<% if current_user == @user %>
+<%= link_to "Edit profile", edit_user_path(current_user)%>
+<% end %>
 
 
