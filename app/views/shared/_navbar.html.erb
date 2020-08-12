@@ -16,7 +16,7 @@
         </li>
          <% if current_user.mentor %>
           <li class="nav-item active">
-            <%= link_to "Find your Mentee", users_path , class: "nav-link" %>
+            <%= link_to "All Mentees", users_path , class: "nav-link" %>
           </li>
          <% else %>
          <%= link_to "Find your Mentor", users_path , class: "nav-link" %>
@@ -28,7 +28,11 @@
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "My requests", my_requests_requests_path, class: "dropdown-item" %>
+            <% if current_user.mentor %>
+              <%= link_to "My Requests", my_requests_requests_path, class: "dropdown-item" %>
+            <% else %>
+              <%= link_to "My Mentors", my_requests_requests_path, class: "dropdown-item"  %>
+            <% end %>
             <%= link_to "Another action", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
