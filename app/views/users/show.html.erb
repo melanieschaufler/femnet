@@ -20,6 +20,10 @@
 <%= cl_image_tag @user.resume.key, height: 300, width: 400, crop: :fill %>
 <% end %>
 
+<% if current_user != @user %>
+<%= link_to "Send request" %>
+<% end %>
+
 <% if current_user == @user %>
 <%= link_to "Edit profile", edit_user_path(current_user)%>
 <% end %>
