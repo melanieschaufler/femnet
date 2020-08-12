@@ -1,4 +1,16 @@
-<h1>Find your Mentor/Mentee</h1>
+<h1>Find your Mentor</h1>
+
+<div class="search-wrapper">
+<%= form_tag users_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    id: "searchfield",
+    placeholder: "Find a Mentor"
+  %>
+  <%= submit_tag "Search", class: "button-primary", id: "search-btn"%>
+<% end %>
+</div>
 
 <ul>
   <% @users.each do |user| %>
