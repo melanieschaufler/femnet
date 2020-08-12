@@ -4,7 +4,20 @@ class UsersController < ApplicationController
 
   def index
     if current_user.mentor == false
-      @users = policy_scope(User.where(mentor: true))
+      if params[:query].present?
+        sql_query = "name @@ :query OR city @@ :query OR profession @@ :query"
+        @users = policy_scope(User.where(sql_query, query: "%#{params[:query]}%")).reject { |user| user == current_user }.reject { |user| user.mentor == false}
+      # if params[:query].present?
+      # sql_query = " \
+      #   users.name @@ :query \
+      #   OR users.city @@ :query \
+      #   OR users.profession @@ :query \
+      #   OR interests.name @@ :query \
+      #  "
+      # @users = User.joins(:interest).where(sql_query, query: "%#{params[:query]}%")
+      else
+        @users = policy_scope(User.where(mentor: true))
+      end
     else
       @users = policy_scope(User.where(mentor: false))
     end
