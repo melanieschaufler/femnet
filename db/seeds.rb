@@ -28,7 +28,7 @@ interest21 = {name: "Communication"}
 interest = Interest.create!(attributes)
 puts "Created #{interest.name}"
 end
- 
+
 puts "Cleaning users"
 User.destroy_all
 puts "creating users"
@@ -50,6 +50,17 @@ nico = {email: "nico@web.de", password: "12345678", name: "Nicole Mayer", age: 6
 user = User.create!(attributes)
 puts "Created #{user.email}"
 end
+
+puts "Cleaning Chatrooms"
+Chatroom.destroy_all
+puts "creating chatrooms"
+
+# TO DO : create a request to create a chatroom
+# chatroom = {name: "general" }
+# [chatroom].each do |attributes|
+# chatroom = Chatroom.create!(attributes)
+# puts "Created #{chatroom.name}"
+# end
 
 puts "Finished"
 
