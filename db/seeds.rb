@@ -1,24 +1,56 @@
-puts "Cleaning users"
-User.destroy_all
-puts "creating users"
+# puts "Cleaning users"
+# User.destroy_all
+# puts "creating users"
 
-louisa = {email: "louisa@web.de", password: "12345678", name: "Louisa Scheiter", age: 25, profession: "Consultant", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-carla = {email: "carla@web.de", password: "12345678", name: "Carla Schell", age: 22, profession: "Manager", city: "Berlin", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-melanie = {email: "melanie@web.de", password: "12345678", name: "Melanie Schaufler", age: 55, profession: "Consultant", city: "Berlin", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
-luissa = {email: "luissa@web.de", password: "12345678", name: "Luissa Schemuth", age: 24, profession: "Productmanager", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-fabiola = {email: "fabiola@web.de", password: "12345678", name: "Fabian Schweizer", age: 54, profession: "Consultant", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
-felipa = {email: "felipa@web.de", password: "12345678", name: "Felipa Lugo", age: 35, profession: "Systemadmin", city: "Hamburg", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
-paula = {email: "paula@web.de", password: "12345678", name: "Paula Wittchen", age: 22, profession: "Self-employed", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-petra = {email: "petra@web.de", password: "12345678", name: "Petra Magpentay", age: 24, profession: "Finance Manager", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-donna = {email: "donna@web.de", password: "12345678", name: "Donna Shahini", age: 45, profession: "Driver", city: "Munich", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
-maxi = {email: "maxi@web.de", password: "12345678", name: "Maximiliane Mustermann", age: 24, profession: "Consultant", city: "Hamburg", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-celine = {email: "celine@web.de", password: "12345678", name: "Celine Nguyen", age: 34, profession: "Copywriter", city: "Cologne", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
-nico = {email: "nico@web.de", password: "12345678", name: "Nicole Mayer", age: 60, profession: "Cook", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
+# louisa = {email: "louisa@web.de", password: "12345678", name: "Louisa Scheiter", age: 25, profession: "Consultant", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+# carla = {email: "carla@web.de", password: "12345678", name: "Carla Schell", age: 22, profession: "Manager", city: "Berlin", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+# melanie = {email: "melanie@web.de", password: "12345678", name: "Melanie Schaufler", age: 55, profession: "Consultant", city: "Berlin", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
+# luissa = {email: "luissa@web.de", password: "12345678", name: "Luissa Schemuth", age: 24, profession: "Productmanager", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+# fabiola = {email: "fabiola@web.de", password: "12345678", name: "Fabian Schweizer", age: 54, profession: "Consultant", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
+# felipa = {email: "felipa@web.de", password: "12345678", name: "Felipa Lugo", age: 35, profession: "Systemadmin", city: "Hamburg", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
+# paula = {email: "paula@web.de", password: "12345678", name: "Paula Wittchen", age: 22, profession: "Self-employed", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+# petra = {email: "petra@web.de", password: "12345678", name: "Petra Magpentay", age: 24, profession: "Finance Manager", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+# donna = {email: "donna@web.de", password: "12345678", name: "Donna Shahini", age: 45, profession: "Driver", city: "Munich", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
+# maxi = {email: "maxi@web.de", password: "12345678", name: "Maximiliane Mustermann", age: 24, profession: "Consultant", city: "Hamburg", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+# celine = {email: "celine@web.de", password: "12345678", name: "Celine Nguyen", age: 34, profession: "Copywriter", city: "Cologne", answer1: "sd", answer2: "sd", answer3: "sd", mentor: false}
+# nico = {email: "nico@web.de", password: "12345678", name: "Nicole Mayer", age: 60, profession: "Cook", city: "Dusseldorf", answer1: "sd", answer2: "sd", answer3: "sd", mentor: true}
 
-[louisa, carla, melanie, luissa, fabiola, felipa, paula, petra, donna, maxi, celine, nico].each do |attributes|
-user = User.create!(attributes)
-puts "Created #{user.email}"
+# [louisa, carla, melanie, luissa, fabiola, felipa, paula, petra, donna, maxi, celine, nico].each do |attributes|
+# user = User.create!(attributes)
+# puts "Created #{user.email}"
+# end
+
+puts "Cleaning Interests"
+Interest.destroy_all
+puts "creating interests"
+
+interest1 = {name: "Personal Branding"}
+interest2 = {name: "Growth Mindset"}
+interest3 = {name: "New Work"}
+interest4 = {name: "Work/Life Balance"}
+interest5 = {name: "Goal Setting"}
+interest6 = {name: "Self Improvement"}
+interest7 = {name: "Negotiation"}
+interest8 = {name: "Networking"}
+interest9 = {name: "New Leadership"}
+interest10 = {name: "Feedback"}
+interest11 = {name: "Public Speaking"}
+interest12 = {name: "Culture"}
+interest13 = {name: "Failures & Learnings"}
+interest14 = {name: "Emotional Intelligence"}
+interest15 = {name: "Entrepreneurial Mindset"}
+interest16 = {name: "Longlife Learning"}
+interest17 = {name: "Agile Working"}
+interest18 = {name: "Ethics"}
+interest19 = {name: "Creativity"}
+interest20 = {name: "Social Media"}
+interest21 = {name: "Communication"}
+
+[interest1, interest2, interest3, interest4, interest5, interest6, interest7, interest8, interest9, interest10, interest11, interest12, interest13, interest14, interest15, interest16, interest17, interest18, interest19, interest20, interest21].each do |attributes|
+interest = Interest.create!(attributes)
+puts "Created #{interest.name}"
 end
+
 puts "Finished"
 
 # puts "Cleaning requests"
