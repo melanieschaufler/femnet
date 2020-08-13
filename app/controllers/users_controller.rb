@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     else
       @users = policy_scope(User.where(mentor: false))
     end
-      @request = Request.new
+    @request = Request.new
   end
 
   def show
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
     # 2 within all requests find request where @user exist as receiver
     # if exist = show status for request
-    #else
+    # else
     #  redirect_to my_requests_requests_path
     # end
   end

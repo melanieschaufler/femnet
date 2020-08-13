@@ -14,7 +14,6 @@ class RequestsController < ApplicationController
 
   def create
     #find user to send request to
-
     @request = Request.new
     @request.asker = current_user
     receiver = User.find(params[:user_id])
@@ -60,6 +59,4 @@ class RequestsController < ApplicationController
   def set_requests
     @request = Request.find(params[:id])
   end
-
-
 end
