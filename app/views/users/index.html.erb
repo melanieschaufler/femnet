@@ -1,4 +1,8 @@
-<h1>Find your Mentor</h1>
+<% if current_user.mentor  %>
+<h1>All mentees</h1>
+<% else %>
+<h1> Find your mentor</h1>
+<% end %>
 
 <div class="search-wrapper">
 <%= form_tag users_path, method: :get do %>

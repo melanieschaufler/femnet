@@ -21,11 +21,21 @@ class UsersController < ApplicationController
     else
       @users = policy_scope(User.where(mentor: false))
     end
+      @request = Request.new
   end
 
   def show
     @user = User.find_by_id(params[:id])
     authorize @user
+    @request = Request.new
+    @status = current_user.requests_as_asker.find_by(receiver: @user)
+    # 1 find all requests of current user
+
+    # 2 within all requests find request where @user exist as receiver
+    # if exist = show status for request
+    #else
+    #  redirect_to my_requests_requests_path
+    # end
   end
 
   def edit

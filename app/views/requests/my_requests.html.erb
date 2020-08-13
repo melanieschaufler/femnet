@@ -1,0 +1,15 @@
+<h1>Mentorship requests:</h1>
+
+<% @my_requests.each do |request| %>
+  <ul>
+    <li><%= request.asker.name %></li>
+    <% if request.status === "Pending" %>
+    <%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %>
+  <% else %>
+    <%= request.status %>
+  <% end %>
+  </ul>
+
+
+
+<% end %>
