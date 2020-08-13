@@ -1,0 +1,5 @@
+<%= simple_form_for user_interest do |f| %>
+  <%= f.input :interest_id, as: :select, collection: interests.order(:name) %>
+  <%= f.input :score %>
+  <%= f.submit %>
+<% end %>
