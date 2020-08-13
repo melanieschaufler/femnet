@@ -3,13 +3,11 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  resources :user_interests
+
   resources :users do
     resources :requests, only: [:create, :destroy]
   end
-  #   collection do
-  #     get :mentors
-  #   end
-  # end   ## Einbau search in index for mentors
 
   resources :requests do
     collection do

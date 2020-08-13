@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @user_interests = UserInterest.all
     authorize @user
     @request = Request.new
     @status = current_user.requests_as_asker.find_by(receiver: @user)
