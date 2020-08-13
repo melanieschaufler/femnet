@@ -4,16 +4,39 @@ class UsersController < ApplicationController
 
   def index
     if current_user.mentor == false
-      @users = policy_scope(User.where(mentor: true))
+      if params[:query].present?
+        sql_query = "name @@ :query OR city @@ :query OR profession @@ :query"
+        @users = policy_scope(User.where(sql_query, query: "%#{params[:query]}%")).reject { |user| user == current_user }.reject { |user| user.mentor == false}
+      # if params[:query].present?
+      # sql_query = " \
+      #   users.name @@ :query \
+      #   OR users.city @@ :query \
+      #   OR users.profession @@ :query \
+      #   OR interests.name @@ :query \
+      #  "
+      # @users = User.joins(:interest).where(sql_query, query: "%#{params[:query]}%")
+      else
+        @users = policy_scope(User.where(mentor: true))
+      end
     else
       @users = policy_scope(User.where(mentor: false))
     end
+      @request = Request.new
   end
 
   def show
     @user = User.find_by_id(params[:id])
     @user_interests = UserInterest.all
     authorize @user
+    @request = Request.new
+    @status = current_user.requests_as_asker.find_by(receiver: @user)
+    # 1 find all requests of current user
+
+    # 2 within all requests find request where @user exist as receiver
+    # if exist = show status for request
+    #else
+    #  redirect_to my_requests_requests_path
+    # end
   end
 
   def edit
