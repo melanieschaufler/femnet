@@ -44,6 +44,10 @@ class RequestsController < ApplicationController
     redirect_to my_requests_requests_path, notice: 'You ignored the request'
   end
 
+  # def my_mentors
+
+  # end
+
   def destroy
     @request = Request.find(params[:id])
     authorize @request
