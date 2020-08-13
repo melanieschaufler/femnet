@@ -1,1 +1,61 @@
 // Specific CSS for your home-page
+body {
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.button-primary{
+  color: $bordeaux;
+  background-color: #ffffff;
+  border: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 65%, rgba(170, 118, 117, 0.4) 10%);
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 600;
+  padding: 8px;
+  padding-bottom: 0;
+  text-align: center;
+}
+
+.button-primary:hover{
+  text-decoration: none;
+}
+
+.button-secondary{
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.button-secondary:hover{
+  text-decoration: none;
+  border-bottom: 3px solid $light-gray;
+}
+
+.header-wrapper {
+  height: 400px;
+  margin-top: 180px;
+  margin-bottom: 180px;
+  z-index: 100;
+  position: relative;
+
+
+  h1{
+    font-size: 48px;
+    font-weight: 900;
+  }
+
+  p {
+    width: 40%;
+    font-weight: 300;
+    margin-top: 24px;
+    margin-bottom: 48px;
+  }
+
+  .header-image {
+    width: 40%;
+    float: right;
+    margin-top: -35%;
+  }
+}
