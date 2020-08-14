@@ -13,8 +13,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    #find user to send request to
-
+    # find user to send request to
     @request = Request.new
     @request.asker = current_user
     receiver = User.find(params[:user_id])
@@ -22,9 +21,9 @@ class RequestsController < ApplicationController
     @request.status = "Pending"
     authorize @request
     if @request.save
-      redirect_to user_path(receiver), notice: 'Your request was successfull.'
+      redirect_to dashboard_index_path(current_user), notice: 'Your request was successfull.'
     else
-      render :new
+      redirect_to my_requests_requests_path(current_user), notice: 'Sorry, something went wrong.'
     end
   end
 
@@ -33,7 +32,7 @@ class RequestsController < ApplicationController
     authorize @request
     @request.status = "Accepted"
     @request.save
-    redirect_to my_requests_requests_path, notice: 'You are now mentor/mentee'
+    redirect_to my_requests_requests_path, notice: 'You are now mentor/mentee.'
   end
 
   def ignore
@@ -41,8 +40,12 @@ class RequestsController < ApplicationController
     authorize @request
     @request.status = "Ignored"
     @request.save
-    redirect_to my_requests_requests_path, notice: 'You ignored the request'
+    redirect_to my_requests_requests_path, notice: 'You ignored the request.'
   end
+
+  # def my_mentors
+
+  # end
 
   def destroy
     @request = Request.find(params[:id])
@@ -56,6 +59,4 @@ class RequestsController < ApplicationController
   def set_requests
     @request = Request.find(params[:id])
   end
-
-
 end

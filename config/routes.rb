@@ -17,7 +17,14 @@ Rails.application.routes.draw do
       get :accept
       get :ignore
     end
+   resources :chatrooms, only: [:create, :show]
   end
+
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
+
+  resources :dashboard, only: :index
 
   # resources :requests do
   #   member do
