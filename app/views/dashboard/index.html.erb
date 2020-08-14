@@ -23,14 +23,14 @@
       <% @my_requests.each do |request| %>
         <ul>
           <% if request.status === "Accepted" %>
-            <li><%= request.asker.name %></li>
+            <li><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></li>
           <% end %>
       </ul>
       <% end %>
   <% else %>
     <p><strong>Your mentors:</strong></p>
       <ul> <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
-        <li><%= request.receiver.name %></li>
+        <li><li><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></li>
         <% end %>
       </ul>
 
