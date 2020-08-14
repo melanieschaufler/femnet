@@ -65,6 +65,7 @@
 }
 
 .card-right {
+  padding: 24px;
   z-index: 100;
   position:relative;
   width: 720px;
@@ -79,8 +80,7 @@
 .question {
   height: 140px;
   width: 100%;
-  padding: 48px;
-  padding-right: 24px;
+  padding: 24px;
 }
 
 .wrapper-number {
@@ -94,7 +94,7 @@
 
 .wrapper-questions {
   float: right;
-  width: 580px;
+  width: 570px;
 
   p {
     font-weight: 300;
