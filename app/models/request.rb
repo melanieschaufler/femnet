@@ -3,6 +3,5 @@ class Request < ApplicationRecord
   belongs_to :receiver, class_name: "User"
   has_one :chatroom
 
-  validates :receiver, uniqueness: true
-  validates :asker, uniqueness: true
+  validates :asker, uniqueness: { scope: :receiver }
 end

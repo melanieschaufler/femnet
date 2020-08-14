@@ -1,5 +1,4 @@
 class ChatroomsController < ApplicationController
-
   def create
     @chatroom = Chatroom.new
     request = Request.find(params[:request_id])
@@ -19,5 +18,4 @@ class ChatroomsController < ApplicationController
     # @chatroom = Chatroom.find_by(request: params[:request_id])
     authorize @chatroom
   end
-
 end
