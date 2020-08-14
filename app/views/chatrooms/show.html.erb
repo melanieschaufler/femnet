@@ -12,6 +12,8 @@
 
 
   <%= simple_form_for [@chatroom, @message], remote: true do |f| %>
-    <%= f.input :content, label: false, placeholder: "Write your message..." %>
-  <% end %>䀀
+    <%= f.input :content, label: false, placeholder: "Write your message and press enter to send it" %>
+  <% end %>
+  <br>
+  <%= link_to "Your Dashboard", dashboard_index_path, class: "btn btn-info" %>
 </div>
