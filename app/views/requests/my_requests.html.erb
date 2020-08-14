@@ -1,7 +1,8 @@
 <!-- <h1>Mentorship requests:</h1> -->
 
   <% if current_user.mentor %>
-    <h1>Your mentees:</h1>
+    <h1>Messages</h1>
+    <h3>Connect with your Mentees</h3>
     <% @my_requests.each do |request| %>
       <ul>
         <li><%= request.asker.name %></li>
@@ -16,7 +17,8 @@
       </ul>
     <% end %>
     <% else %>
-    <h1>Your mentors:</h1>
+    <h1>Messages</h1>
+    <h3>Connect with your Mentors</h3>
       <ul> <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
         <li><%= request.receiver.name %></li>
          <% unless request.chatroom %>
