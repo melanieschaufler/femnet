@@ -2,60 +2,72 @@
 
 <!-- Profile overview -->
 
-<% if @user.photo.present? %>
-<%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
+<div class ="dashboard-profile">
+  <% if @user.photo.present? %>
+    <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
 
-<h1><%= @user.name %></h1>
-<p><%= @user.age %></p>
-<p><%= @user.profession %></p>
+  <p><%= @user.age %></p>
+  <p><%= @user.profession %></p>
 
-<%= link_to "Go to profile", edit_user_path(current_user) %>
+  <%= link_to "Go to profile", edit_user_path(current_user) %>
+</div>
+
 
 <!-- Messages overview -->
 
+<!-- <div class="messages-overview">
+  <h3>Your messages:</h3>
+    <%#= @my_messages.each do |message| %>
+      <ul>
+        <li> <%#= @asker.name  %> <%#= @message.content %> </li>
+      </ul>
+    <#% end %>
+</div> -->
 
 <!-- Mentors/Mentees overview -->
 
-<div>
+<div class="dashboard-mentor-overview">
   <% if current_user.mentor %>
     <p><strong>Your mentees:</strong></p>
       <% @my_requests.each do |request| %>
         <ul>
           <% if request.status === "Accepted" %>
-            <li><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></li>
+              <li><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></li>
           <% end %>
-      </ul>
+        </ul>
       <% end %>
   <% else %>
     <p><strong>Your mentors:</strong></p>
       <ul> <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
-        <li><li><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></li>
+        <li><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></li>
         <% end %>
       </ul>
 
   <% end %>
 </div>
 
-
-
 <!-- Requests overview -->
 
-<div>
+<div class="requests-overview">
   <% if current_user.mentor %>
     <p><strong>Your requests:</strong></p>
       <% @my_requests.each do |request| %>
       <ul>
         <% if request.status === "Pending" %>
-        <li><%= request.asker.name %></li>
-        <%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %>
+        <div class="dashboard-user-card">
+          <li><%= request.asker.name %></li>
+          <%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %>
+        </div>
       <% end %>
       </ul>
     <% end %>
   <% else %>
     <p><strong>Your open requests:</strong></p>
       <ul> <% current_user.requests_as_asker.where(status: "Pending").each do |request| %>
-        <li><%= request.receiver.name %> | <%= request.status %></li>
+        <div class="dasbord-user-card">
+          <li><%= request.receiver.name %> | <%= request.status %></li>
+        </div>
     <% end %>
   <% end %>
 </div>
