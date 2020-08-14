@@ -1,19 +1,35 @@
-<h1>Welcome <%= current_user.name %></h1>
+<h1>Good evening, <%= current_user.name %>!</h1>
 
 <!-- Profile overview -->
 
-<div class ="dashboard-profile">
+<div class="flexbox">
+<div class="information-wrapper">
   <% if @user.photo.present? %>
-    <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+    <%= cl_image_tag @user.photo.key, id: "dashboard-profile-photo"%>
+  <% else %>
+    <%= image_tag "businesswoman.png", id: "dashboard-profile-photo"%>
   <% end %>
+  <div class="card-left">
+  <div class="personal-information">
+    <% if @user.mentor %>
+      <p>Mentor</p>
+    <% else %>
+      <p>Mentee</p>
+    <% end %>
+    <h2><%= @user.name %></h2>
+    <ul class="personal-list">
+      <li><%= image_tag "shape-03.png" %><strong><%= @user.age %></strong> years old</li>
+      <li><%= image_tag "shape-03.png" %>based in <strong><%= @user.city %></strong></li>
+      <li><%= image_tag "shape-03.png" %>working in <strong><%= @user.profession %></strong></li>
+    </ul>
+  </div>
+  </div>
 
-  <p><%= @user.age %></p>
-  <p><%= @user.profession %></p>
-
-  <%= link_to "Go to profile", edit_user_path(current_user) %>
+<div class="card-right">
+  <h3><%= image_tag "communication.png", class: "dashboard-icon"%> Your Messages</h3>
 </div>
 
-
+</div>
 <!-- Messages overview -->
 
 <!-- <div class="messages-overview">
@@ -27,9 +43,9 @@
 
 <!-- Mentors/Mentees overview -->
 
-<div class="dashboard-mentor-overview">
+<div class="card-mentors">
   <% if current_user.mentor %>
-    <p><strong>Your mentees:</strong></p>
+    <h3><%= image_tag "growth.png", class: "dashboard-icon"%> Your Mentees</h3>
       <% @my_requests.each do |request| %>
         <ul>
           <% if request.status === "Accepted" %>
@@ -38,20 +54,21 @@
         </ul>
       <% end %>
   <% else %>
-    <p><strong>Your mentors:</strong></p>
+    <h3><%= image_tag "growth.png", class: "dashboard-icon"%> Your Mentors</h3>
       <ul> <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
         <li><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></li>
         <% end %>
       </ul>
-
   <% end %>
 </div>
 
+
+
 <!-- Requests overview -->
 
-<div class="requests-overview">
-  <% if current_user.mentor %>
-    <p><strong>Your requests:</strong></p>
+<div class="card-mentors">
+  <h3><%= image_tag "match.png", class: "dashboard-icon"%> Your Requests</h3>
+    <% if current_user.mentor %>
       <% @my_requests.each do |request| %>
       <ul>
         <% if request.status === "Pending" %>
@@ -63,7 +80,6 @@
       </ul>
     <% end %>
   <% else %>
-    <p><strong>Your open requests:</strong></p>
       <ul> <% current_user.requests_as_asker.where(status: "Pending").each do |request| %>
         <div class="dasbord-user-card">
           <li><%= request.receiver.name %> | <%= request.status %></li>
@@ -71,6 +87,8 @@
     <% end %>
   <% end %>
 </div>
+
+
 
 
 

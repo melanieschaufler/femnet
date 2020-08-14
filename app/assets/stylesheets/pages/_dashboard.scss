@@ -1,0 +1,27 @@
+#dashboard-profile-photo {
+    width: 278px;
+    height: 278px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    border-radius: 50%;
+    position: absolute;
+    margin-left: 54px;
+    top: 244px;
+  }
+
+.dashboard-icon {
+  width: 50px;
+  margin-right: 12px;
+}
+
+.card-mentors {
+  position: relative;
+  z-index:100;
+  margin-top: 48px;
+  background-color: white;
+  width: 100%;
+  min-height: 473px;
+  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  padding: 24px;
+}
