@@ -32,14 +32,15 @@
 </div>
 <!-- Messages overview -->
 
-<!-- <div class="messages-overview">
-  <h3>Your messages:</h3>
-    <%#= @my_messages.each do |message| %>
-      <ul>
-        <li> <%#= @asker.name  %> <%#= @message.content %> </li>
-      </ul>
-    <#% end %>
-</div> -->
+<div class="messages-overview">
+  <h3>Your last messages:</h3>
+    <% @my_messages.each do |message| %>
+      <%= message.user.name %> : <%= message.content %> ( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )
+      <% end %>
+      <%#= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
+</div>
+
+<h3>Your notifications:</h3>
 
 <!-- Mentors/Mentees overview -->
 
