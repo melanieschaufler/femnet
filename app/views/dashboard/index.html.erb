@@ -34,11 +34,11 @@
 
 <div class="messages-overview">
 
-  <h3>Your last messages:</h3>
+  <h3>Your latest messages:</h3>
     <% @my_messages.each do |message| %>
       <%= message.user.name %> : <%= message.content %> ( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )
+      <%= link_to "Keep chatting", request_chatroom_path(message.chatroom.request, message.chatroom), class: "btn btn-info" %>
       <% end %>
-      <%#= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
 </div>
 
 <h3>Your notifications:</h3>

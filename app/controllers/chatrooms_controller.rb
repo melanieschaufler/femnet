@@ -1,6 +1,5 @@
 class ChatroomsController < ApplicationController
 
-
   def create
     @chatroom = Chatroom.new
     @request = Request.find(params[:request_id])
