@@ -12,4 +12,5 @@ class DashboardController < ApplicationController
       request.chatroom.messages.where.not(user: current_user).last
     end
   end
+
 end

@@ -33,6 +33,7 @@
 <!-- Messages overview -->
 
 <div class="messages-overview">
+
   <h3>Your last messages:</h3>
     <% @my_messages.each do |message| %>
       <%= message.user.name %> : <%= message.content %> ( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )

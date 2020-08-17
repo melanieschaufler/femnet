@@ -1,0 +1,39 @@
+
+.footer {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 160px;
+  padding: 0px 50px;
+
+  p {
+  color: #3F3F3F;
+  padding: 20px;
+  }
+
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+
+.footer-social a {
+  text-decoration: none;
+  font-size: 24px;
+  padding: 0px 10px;
+  color: #AA7675;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+}
+
+.footer-vector {
+  position: absolute;
+  left: -148px;
+  width: 130%;
+  float: right;
+  z-index: 1;
+}
