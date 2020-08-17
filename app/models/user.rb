@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :requests_as_asker, source: :requests, class_name: "Request", foreign_key: :asker, dependent: :destroy
   has_many :requests_as_receiver, source: :requests, class_name: "Request", foreign_key: :receiver_id, dependent: :destroy
 
+  has_many :notifications, as: :recipient
+
   has_one_attached :photo
   has_one_attached :resume
 end

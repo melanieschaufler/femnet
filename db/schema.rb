@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_132831) do
+ActiveRecord::Schema.define(version: 2020_08_17_083649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 2020_08_13_132831) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "recipient_id"
+    t.string "action"
+    t.string "notifiable_type"
+    t.integer "notifiable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.string "status"
     t.bigint "asker_id"
@@ -104,6 +115,7 @@ ActiveRecord::Schema.define(version: 2020_08_13_132831) do
   add_foreign_key "chatrooms", "requests"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "requests", "users", column: "asker_id"
   add_foreign_key "requests", "users", column: "receiver_id"
   add_foreign_key "user_interests", "interests"
