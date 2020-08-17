@@ -9,9 +9,14 @@
         <% if request.status === "Pending" %>
         <%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %>
       <% else %>
-        <%= request.status %>
+      <p>Status: <%= request.status %></p>
          <% if request.chatroom %>
-        <%= link_to "Keep in Touch", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
+              <% @my_messages.each do |message| %>
+                <ul>
+                  <li> <%= message.user.name %> : <%= message.content %> ( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )</li>
+                </ul>
+              <% end %>
+        <%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
         <% end %>
       <% end %>
       </ul>
@@ -20,13 +25,17 @@
     <h1>Messages</h1>
     <h3>Connect with your Mentors</h3>
       <ul> <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
-        <li><%= request.receiver.name %></li>
+        <li><h3><%= request.receiver.name %></h3></li>
          <% unless request.chatroom %>
         <%= simple_form_for [request, Chatroom.new] do |f| %>
           <%= f.submit "Start chatting", class: "btn btn-primary" %>
         <% end %>
       <% else %>
-        <%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
+         <% @my_messages.each do |message| %>
+              <%= message.user.name %> : <%= message.content %> ( <%= message.created_at %> )
+              <br>
+              <%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
+          <% end %>
       <% end %>
     <% end %>
         <% end %>
