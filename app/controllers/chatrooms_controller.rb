@@ -1,8 +1,5 @@
 class ChatroomsController < ApplicationController
 
-  def my_chatrooms
-    @my_chatrooms = Chatroom.all
-  end
 
   def create
     @chatroom = Chatroom.new
