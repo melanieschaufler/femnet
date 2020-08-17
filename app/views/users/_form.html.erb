@@ -2,17 +2,36 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
+  <div class = "container">
+    <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :photo, as: :file %>
+    <%= f.input :photo, as: :file, class: "button-primary" %>
     <%= f.input :age %>
-    <%= f.input :profession %>
+    <%= f.input :profession, collection: ["Brand & Public Relations",
+                "Consulting",
+                "Data Science & Analytics",
+                "Entrepreneurship",
+                "Finance, Accounting & Controlling",
+                "Freelancing",
+                "Human Ressources & Recruiting",
+                "Infrastructures & Security",
+                "Leadership & Management",
+                "Marketing & Growth",
+                "Product Management",
+                "Sales",
+                "Software Engineering",
+                "Strategy & Business Development",
+                "Sustainability",
+                "UX, Design & User Research",
+                "Web Development"]%>
     <%= f.input :city %>
-    <%= f.input :answer1 %>
-    <%= f.input :answer2 %>
-    <%= f.input :answer3 %>
+    <%= f.input :answer1, label: 'Who are you, what defines you and what have you accomplished so far?'%>
+    <%= f.input :answer2, label: 'Where do you see yourself in the future?'%>
+    <%= f.input :answer3, label: 'What are you expecting from FemNet?'%>
     <%= f.input :resume, as: :file %>
-    <%= f.submit %>
+    <%= f.submit class: "btn-primary" %>
   </div>
+  </div>
+
 
 <% end %>
