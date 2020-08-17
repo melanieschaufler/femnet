@@ -32,14 +32,14 @@
 </div>
 <!-- Messages overview -->
 
-<!-- <div class="messages-overview">
-  <h3>Your messages:</h3>
-    <%#= @my_messages.each do |message| %>
+<div class="messages-overview">
+  <h3>Your chats:</h3>
+    <%= @chatrooms.each do |message| %>
       <ul>
-        <li> <%#= @asker.name  %> <%#= @message.content %> </li>
+        <li><%= @chatroom.name  %></li>
       </ul>
-    <#% end %>
-</div> -->
+    <% end %>
+</div>
 
 <!-- Mentors/Mentees overview -->
 

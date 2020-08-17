@@ -6,6 +6,4 @@ class DashboardController < ApplicationController
     @user = current_user
     @my_requests = current_user.requests_as_receiver
     @my_messages = Message.where(receiver: current_user)
-  end
-
 end
