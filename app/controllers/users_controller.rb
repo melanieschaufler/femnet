@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
-
     @interests = Interest.all
 
     if current_user.mentor == false
@@ -31,7 +30,8 @@ class UsersController < ApplicationController
         {
           lat: user.latitude,
           lng: user.longitude,
-          infoWindow: render_to_string(partial: "info_window", locals: { user: user })
+          infoWindow: render_to_string(partial: "info_window", locals: { user: user }),
+          image_url: helpers.asset_url('map-marker.png')
         }
     end
   end
