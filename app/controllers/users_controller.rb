@@ -34,6 +34,17 @@ class UsersController < ApplicationController
       @users = policy_scope(User.where(mentor: false))
     end
     @request = Request.new
+
+    if current_user.mentor == false
+      @users = User.where(mentor: true).geocoded
+      @markers = @users.map do |user|
+        {
+          lat: user.latitude,
+          lng: user.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { user: user })
+        }
+      end
+    end
   end
 
   def show
