@@ -7,86 +7,58 @@
 <% end %>
 
 <div class="flexbox">
-<div class="information-wrapper">
-  <% if @user.photo.present? %>
-    <%= cl_image_tag @user.photo.key, id: "profile-photo"%>
-  <% else %>
-    <%= image_tag "businesswoman.png", id: "profile-photo"%>
-  <% end %>
-  <div class="card-left">
-  <div class="personal-information">
-    <% if @user.mentor %>
-      <p>Mentor</p>
+  <div class="information-wrapper">
+    <% if @user.photo.present? %>
+      <%= cl_image_tag @user.photo.key, id: "profile-photo"%>
     <% else %>
-      <p>Mentee</p>
+      <%= image_tag "businesswoman.png", id: "profile-photo"%>
     <% end %>
-    <h2><%= @user.name %></h2>
-    <ul class="personal-list">
-      <li><%= image_tag "shape-03.png" %><strong><%= @user.age %></strong> years old</li>
-      <li><%= image_tag "shape-03.png" %>based in <strong><%= @user.city %></strong></li>
-      <li><%= image_tag "shape-03.png" %>working in <strong><%= @user.profession %></strong></li>
-    </ul>
+    <div class="card-left">
+    <div class="personal-information">
+      <% if @user.mentor %>
+        <p>Mentor</p>
+      <% else %>
+        <p>Mentee</p>
+      <% end %>
+      <h2><%= @user.name %></h2>
+      <ul class="personal-list">
+        <li><%= image_tag "shape-03.png" %><strong><%= @user.age %></strong> years old</li>
+        <li><%= image_tag "shape-03.png" %>based in <strong><%= @user.city %></strong></li>
+        <li><%= image_tag "shape-03.png" %>working in <strong><%= @user.profession %></strong></li>
+      </ul>
 
-   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
- See CV
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"> <%= @user.name %>'s CV </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <% if @user.resume.present?  %>
-          <%= cl_image_tag @user.resume.key, format: :png, id: "resume"%>
-        <% else %>
-          <p>No CV available</p>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Download</button>
-        <a href="cl_image_tag @user.resume.key.url" type="button" class= "btn-secondary" data-dismiss="modal">Download</a>
-
-        <%#= link_to "Download", @user.resume.key, format: :png, id: "resume", class: "edit-btn"%>
-      </div>
-    </div>
-  </div>
+     <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+   See CV
+  </button>
 </div>
 
-<div class="card-right">
-  <div class="question">
-    <div class="wrapper-number">
-      <%= image_tag "number-01.png" %>
+  <div class="card-right">
+    <div class="question">
+      <div class="wrapper-number">
+        <%= image_tag "number-01.png" %>
+      </div>
+      <div class="wrapper-questions">
+        <p><strong>Who are you, what defines you and what have you </br>accomplished so far?</strong></br><%= @user.answer1 %></p>
+      </div>
     </div>
-    <div class="wrapper-questions">
-      <p><strong>Who are you, what defines you and what have you </br>accomplished so far?</strong></br><%= @user.answer1 %></p>
+    <div class="question">
+      <div class="wrapper-number">
+        <%= image_tag "number-02.png" %>
+      </div>
+      <div class="wrapper-questions">
+        <p><strong>Where do you see yourself in the future?</strong></br><%= @user.answer2 %></p>
+      </div>
+    </div>
+    <div class="question">
+      <div class="wrapper-number">
+        <%= image_tag "number-03.png" %>
+      </div>
+      <div class="wrapper-questions">
+      <p><strong>What are you expecting from FemNet?</strong></br><%= @user.answer3 %></p>
+      </div>
     </div>
   </div>
-  <div class="question">
-    <div class="wrapper-number">
-      <%= image_tag "number-02.png" %>
-    </div>
-    <div class="wrapper-questions">
-      <p><strong>Where do you see yourself in the future?</strong></br><%= @user.answer2 %></p>
-    </div>
-  </div>
-  <div class="question">
-    <div class="wrapper-number">
-      <%= image_tag "number-03.png" %>
-    </div>
-    <div class="wrapper-questions">
-    <p><strong>What are you expecting from FemNet?</strong></br><%= @user.answer3 %></p>
-    </div>
-  </div>
-</div>
-
 </div>
 
 <%= image_tag 'shape-01.png', id: "background-shape-right"%>
@@ -147,7 +119,25 @@
   <% end %>
 </div>
 
-
+<!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="modal-size" role="document">
+      <div class="modal-content" id="modal-background">
+        <div class="modal-header" id="modal-header">
+          <button type="button" class="close" id="close-button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <% if @user.resume.present?  %>
+            <%= cl_image_tag @user.resume.key, format: :png, id: "resume"%>
+          <% else %>
+            <p>No CV available</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

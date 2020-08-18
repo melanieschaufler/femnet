@@ -38,7 +38,7 @@
   <p><strong>Interests</strong></p>
   <% @interests.each do |interest| %>
       <li>
-        <%= check_box_tag 'interests[]', interest.name -%>
+        <%= check_box_tag 'interests[]', interest.id -%>
         <%= interest.name -%>
       </li>
   <% end %>

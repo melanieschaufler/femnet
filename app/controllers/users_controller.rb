@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         # second filter by filter selection
         @users = @users.filter_by_profession(params[:professions]) if params[:professions].present?
 
-        @users = @users.filter_by_interest(params[:interests]) if params[:interests].present?
+        @users = @users.filter_by_interest(params[:interests].map { |id| id.to_i }) if params[:interests].present?
 
       # if params[:query].present?
       # sql_query = " \

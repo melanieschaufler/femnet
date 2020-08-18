@@ -19,5 +19,5 @@ class User < ApplicationRecord
 
   scope :filter_by_profession, -> (profession_array) { where profession: profession_array }
   scope :filter_by_mentor, -> (user) { where(mentor: true).where.not(id: user) }
-  scope :filter_by_interest, -> (interest_array) { where interest: interest_array }
+  scope :filter_by_interest, -> (interest_array) { joins(:user_interests).where(user_interests: { interest: interest_array }).distinct }
 end
