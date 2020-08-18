@@ -17,8 +17,8 @@ const addMarkersToMap = (map, markers) => {
     element.className = 'marker';
     element.style.backgroundImage = `url('${marker.image_url}')`;
     element.style.backgroundSize = 'contain';
-    element.style.width = '20px';
-    element.style.height = '30px';
+    element.style.width = '20.5px';
+    element.style.height = '30.5px';
     new mapboxgl.Marker(element)
       .setLngLat([ marker.lng, marker.lat ])
       .setPopup(popup)
