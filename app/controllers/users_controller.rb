@@ -26,6 +26,8 @@ class UsersController < ApplicationController
     end
     @request = Request.new
 
+    prng = Random.new
+
     @markers = @users.map do |user|
         {
           lat: user.latitude,
@@ -34,6 +36,7 @@ class UsersController < ApplicationController
           image_url: helpers.asset_url('map-marker.png')
         }
     end
+
   end
 
   def show
