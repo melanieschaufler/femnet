@@ -4,13 +4,12 @@ class DashboardController < ApplicationController
   def index
     @user = current_user
     if current_user.mentor
-      @my_requests = current_user.requests_as_receiver.where(status: "Accepted")
+      @my_requests = current_user.requests_as_receiver
     else
       @my_requests = current_user.requests_as_asker.where(status: "Accepted")
     end
-    @my_messages = @my_requests.map do |request|
+    @my_messages = @my_requests.where(status: "Accepted").map do |request|
       request.chatroom.messages.where.not(user: current_user).last
     end
   end
-
 end

@@ -35,10 +35,14 @@
 <div class="messages-overview">
 
   <h3>Your latest messages:</h3>
+  <% if @my_messages.first.nil?  %>
+  <p>You dont have any</p>
+  <% else %>
     <% @my_messages.each do |message| %>
       <%= message.user.name %> : <%= message.content %> ( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )
       <%= link_to "Keep chatting", request_chatroom_path(message.chatroom.request, message.chatroom), class: "btn btn-info" %>
       <% end %>
+  <% end %>
 </div>
 
 <h3>Your notifications:</h3>
@@ -51,7 +55,7 @@
       <% @my_requests.each do |request| %>
         <ul>
           <% if request.status === "Accepted" %>
-              <li><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></li>
+              <li><%= link_to "#{request.asker.name}", user_path(request.asker) %></li>
           <% end %>
         </ul>
       <% end %>
