@@ -10,41 +10,33 @@ class UsersController < ApplicationController
       if params[:professions].present? || params[:query].present? || params[:interests].present?
         #raise
         # first filter by search
-        @users = policy_scope(User.where(mentor: true))
+        @users = policy_scope(User.where(mentor: true).geocoded)
         sql_query = "name ILIKE :query OR city ILIKE :query "
         @users = policy_scope(User.where(sql_query, query: "%#{params[:query]}%")).filter_by_mentor(current_user) if params[:query].present?
 
         # second filter by filter selection
         @users = @users.filter_by_profession(params[:professions]) if params[:professions].present?
 
-        @users = @users.filter_by_interest(params[:interests]) if params[:interests].present?
+        @users = @users.filter_by_interest(params[:interests].map { |id| id.to_i }) if params[:interests].present?
 
-      # if params[:query].present?
-      # sql_query = " \
-      #   users.name @@ :query \
-      #   OR users.city @@ :query \
-      #   OR users.profession @@ :query \
-      #   OR interests.name @@ :query \
-      #  "
-      # @users = User.joins(:interest).where(sql_query, query: "%#{params[:query]}%")
       else
-        @users = policy_scope(User.where(mentor: true))
+        @users = policy_scope(User.where(mentor: true).geocoded)
       end
     else
-      @users = policy_scope(User.where(mentor: false))
+      @users = policy_scope(User.where(mentor: false).geocoded)
     end
     @request = Request.new
 
-    if current_user.mentor == false
-      @users = User.where(mentor: true).geocoded
-      @markers = @users.map do |user|
+    prng = Random.new
+
+    @markers = @users.map do |user|
         {
-          lat: user.latitude,
-          lng: user.longitude,
+          lat: user.latitude - prng.rand(0.001..0.02),
+          lng: user.longitude - prng.rand(0.0001..0.02),
           infoWindow: render_to_string(partial: "info_window", locals: { user: user })
         }
-      end
     end
+
   end
 
   def show

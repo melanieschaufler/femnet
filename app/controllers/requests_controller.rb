@@ -39,6 +39,7 @@ class RequestsController < ApplicationController
     authorize @request
     @request.status = "Accepted"
     @request.save
+    @chatroom = Chatroom.create(request: @request)
     redirect_to my_requests_requests_path, notice: 'You are now mentor/mentee.'
   end
 

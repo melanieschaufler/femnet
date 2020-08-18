@@ -38,7 +38,7 @@
   <p><strong>Interests</strong></p>
   <% @interests.each do |interest| %>
       <li>
-        <%= check_box_tag 'interests[]', interest.name -%>
+        <%= check_box_tag 'interests[]', interest.id -%>
         <%= interest.name -%>
       </li>
   <% end %>
@@ -48,17 +48,37 @@
 </div>
 
 <p><%= @users.count %> result(s) found</p>
-<div class="cards-workspaces">
+
+<div class="all-cards">
   <% @users.each do |user| %>
-   <div class="card">
-    <h2><%= link_to user.name, user_path(user)%> (<%= user.age %>)</h2>
-    <p>Profession: <%= user.profession %></br>
-    Location: <%= user.city %>
-  </div>
+    <div class="card">
+       <% if user.photo.present? %>
+        <%= cl_image_tag user.photo.key, id: "profile-photo"%>
+       <% else %>
+        <%= image_tag "businesswoman.png", id: "profile-photo"%>
+       <% end %>
+       <div class="information">
+          <p><strong><%= user.city %></strong></br></p>
+          <h3><%= user.name %></h3>
+          <p><strong><%= user.profession %></strong></br></p>
+       <div class="interest-information">
+          <% if user.user_interests.present? %>
+            <% user.user_interests.each do |interest| %>
+              <div id="name-interest">
+                  <%= interest.interest.name %></br>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="read-more-button">
+       <%= link_to "Read More", user_path(user), class: "button-primary" %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<div id="map"
+<div class="map" id="map"
      style="width: 50%; height: 300px;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">

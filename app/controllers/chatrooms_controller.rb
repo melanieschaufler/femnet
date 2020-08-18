@@ -1,13 +1,12 @@
 class ChatroomsController < ApplicationController
-
   def create
     @chatroom = Chatroom.new
     @request = Request.find(params[:request_id])
-    @chatroom.request = request
+    @chatroom.request = @request
     # @chatroom.name = receiver.name
     authorize @chatroom
     if @chatroom.save
-      redirect_to request_chatroom_path(request, @chatroom)
+      redirect_to request_chatroom_path(@request, @chatroom)
     else
       render "requests/my_requests"
     end
