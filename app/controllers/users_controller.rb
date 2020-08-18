@@ -27,13 +27,16 @@ class UsersController < ApplicationController
     end
     @request = Request.new
 
+    prng = Random.new
+
     @markers = @users.map do |user|
         {
-          lat: user.latitude,
-          lng: user.longitude,
+          lat: user.latitude - prng.rand(0.001..0.02),
+          lng: user.longitude - prng.rand(0.0001..0.02),
           infoWindow: render_to_string(partial: "info_window", locals: { user: user })
         }
     end
+
   end
 
   def show
