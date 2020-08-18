@@ -1,35 +1,31 @@
 .search-wrapper{
-  padding-right: 24px;
-  padding-bottom: 24px;
-  margin-top: 24px;
+  margin-top: 48px;
+  position: relative;
+  z-index: 100;
   margin-bottom: 48px;
 }
 
 #searchfield{
-  position: absolute;
   width: 642px;
-  height: 62px;
-  left: 144px;
-  top: 172px;
-  margin-bottom: 48px;
+  height: 50px;
+  margin-bottom: 24px;
 
   font-size: 18px;
   color: black;
   letter-spacing: 0.01em;
+  padding-left: 24px;
 
-  background: #CBADAC;
+  background: rgba(203,173,172, 0.4);
   border-radius: 30px;
   border: 0px;
+
 }
 
 #search-btn {
-  position: absolute;
   width: 118px;
-  height: 62px;
-  left: 686px;
-  top: 172px;
+  height: 50px;
+  margin-top: 24px;
   padding-bottom: 7px;
-  margin-bottom: 48px;
 
   font-size: 18px;
   color: white;
@@ -38,10 +34,39 @@
   border-radius: 30px;
 }
 
+.filter-professions {
+  list-style: none;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  width: 50%;
+  padding-left: 0;
+
+  li {
+    font-weight: 300;
+    font-size: 18px;
+  }
+}
+
+.filter-interests {
+  position: absolute;
+  right: 0;
+  top: 78px;
+  list-style: none;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  width: 45%;
+
+  li {
+    font-weight: 300;
+    font-size: 18px;
+  }
+}
+
 .cards-workspaces{
   width: 660px;
   display: flex;
-  margin-top: 50px;
   flex-wrap: wrap;
 }
 
