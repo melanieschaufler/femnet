@@ -1,4 +1,53 @@
-h3 {
-  font-size: 24px;
-  font-weight: 300;
+#chatroom-headline{
+  margin-bottom: 48px;
 }
+
+
+  .sender-message-container {
+    min-height: 100px;
+    text-align: left;
+    border-line: 1px solid;
+    border-radius: 5px;
+    padding: 24px;
+    margin-bottom: 24px;
+    float: left;
+    background-color: $light-rose;
+    width: 60%;
+
+    #message-photo{
+      margin-right: 24px;
+      float: left;
+    }
+
+  }
+
+  #message-photo{
+      width: 45px;
+      height: 45px;
+      object-fit: cover;
+      object-position: 50% 50%;
+      border-radius: 50%;
+    }
+
+  .receiver-message-container {
+    text-align: right;
+    float:right;
+    min-height: 100px;
+    background-color: $light-gray;
+    border-line: 1px solid;
+    border-radius: 5px;
+    padding: 24px;
+    margin-bottom: 24px;
+    width: 60%;
+
+   #message-photo{
+      float: right;
+      margin-left: 24px;
+
+    }
+  }
+
+  #send-button {
+    margin-bottom: 48px;
+  }
+
