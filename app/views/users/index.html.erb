@@ -1,8 +1,20 @@
-<% if current_user.mentor  %>
-<h1>All mentees</h1>
-<% else %>
-<h1> Find your mentor</h1>
-<% end %>
+<% professions = ["Brand & Public Relations",
+                  "Consulting",
+                  "Data Science & Analytics",
+                  "Entrepreneurship",
+                  "Finance, Accounting & Controlling",
+                  "Freelancing",
+                  "Human Ressources & Recruiting",
+                  "Infrastructures & Security",
+                  "Leadership & Management",
+                  "Marketing & Growth",
+                  "Product Management",
+                  "Sales",
+                  "Software Engineering",
+                  "Strategy & Business Development",
+                  "Sustainability",
+                  "UX, Design & User Research",
+                  "Web Development"] %>
 
 <div class="search-wrapper">
 <%= form_tag users_path, method: :get do %>
@@ -12,36 +24,62 @@
     id: "searchfield",
     placeholder: "Find a Mentor"
   %>
+
+  <ul class="filter-professions">
+  <p><strong>Profession</strong></p>
+  <% professions.each do |profession| %>
+      <li>
+        <%= check_box_tag 'professions[]', profession -%>
+        <%= profession -%>
+      </li>
+  <% end %>
+  </ul>
+  <ul class="filter-interests">
+  <p><strong>Interests</strong></p>
+  <% @interests.each do |interest| %>
+      <li>
+        <%= check_box_tag 'interests[]', interest.id -%>
+        <%= interest.name -%>
+      </li>
+  <% end %>
+  </ul>
   <%= submit_tag "Search", class: "button-primary", id: "search-btn"%>
 <% end %>
 </div>
 
+<p><%= @users.count %> result(s) found</p>
 
 <div class="all-cards">
   <% @users.each do |user| %>
-  <div class="card">
-     <% if user.photo.present? %>
-    <%= cl_image_tag user.photo.key, id: "profile-photo"%>
-  <% else %>
-    <%= image_tag "businesswoman.png", id: "profile-photo"%>
-  <% end %>
-    <div class="information">
-      <p><strong><%= user.city %></strong></br></p>
-      <h3><%= user.name %></h3>
-      <p><strong><%= user.profession %></strong></br></p>
-      <div class="interest-information">
-        <% if user.user_interests.present? %>
-        <% user.user_interests.each do |interest| %>
-        <div id="name-interest">
-            <%= interest.interest.name %></br>
-        </div>
+    <div class="card">
+       <% if user.photo.present? %>
+        <%= cl_image_tag user.photo.key, id: "profile-photo"%>
+       <% else %>
+        <%= image_tag "businesswoman.png", id: "profile-photo"%>
+       <% end %>
+       <div class="information">
+          <p><strong><%= user.city %></strong></br></p>
+          <h3><%= user.name %></h3>
+          <p><strong><%= user.profession %></strong></br></p>
+       <div class="interest-information">
+          <% if user.user_interests.present? %>
+            <% user.user_interests.each do |interest| %>
+              <div id="name-interest">
+                  <%= interest.interest.name %></br>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
+      </div>
+      <div class="read-more-button">
+       <%= link_to "Read More", user_path(user), class: "button-primary" %>
       </div>
     </div>
-     <div class="read-more-button">
-       <%= link_to "Read More", user_path(user), class: "button-primary" %>
-   </div>
-  </div>
   <% end %>
+</div>
+
+<div id="map"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>

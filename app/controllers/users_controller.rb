@@ -3,10 +3,22 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
+
+    @interests = Interest.all
+
     if current_user.mentor == false
-      if params[:query].present?
-        sql_query = "name @@ :query OR city @@ :query OR profession @@ :query"
-        @users = policy_scope(User.where(sql_query, query: "%#{params[:query]}%")).reject { |user| user == current_user }.reject { |user| user.mentor == false}
+      if params[:professions].present? || params[:query].present? || params[:interests].present?
+        #raise
+        # first filter by search
+        @users = policy_scope(User.where(mentor: true))
+        sql_query = "name ILIKE :query OR city ILIKE :query "
+        @users = policy_scope(User.where(sql_query, query: "%#{params[:query]}%")).filter_by_mentor(current_user) if params[:query].present?
+
+        # second filter by filter selection
+        @users = @users.filter_by_profession(params[:professions]) if params[:professions].present?
+
+        @users = @users.filter_by_interest(params[:interests].map { |id| id.to_i }) if params[:interests].present?
+
       # if params[:query].present?
       # sql_query = " \
       #   users.name @@ :query \
@@ -22,6 +34,17 @@ class UsersController < ApplicationController
       @users = policy_scope(User.where(mentor: false))
     end
     @request = Request.new
+
+    if current_user.mentor == false
+      @users = User.where(mentor: true).geocoded
+      @markers = @users.map do |user|
+        {
+          lat: user.latitude,
+          lng: user.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { user: user })
+        }
+      end
+    end
   end
 
   def show

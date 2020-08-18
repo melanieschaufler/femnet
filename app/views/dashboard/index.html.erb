@@ -79,7 +79,7 @@
       <ul>
         <% if request.status === "Pending" %>
         <div class="dashboard-user-card">
-          <li><%= request.asker.name %></li>
+          <h2><%= request.asker.name %></h2>
           <%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %>
         </div>
       <% end %>
@@ -88,7 +88,7 @@
   <% else %>
       <ul> <% current_user.requests_as_asker.where(status: "Pending").each do |request| %>
         <div class="dasbord-user-card">
-          <li><%= request.receiver.name %> | <%= request.status %></li>
+          <h2><%= request.receiver.name %> | <%= request.status %></h2>
         </div>
     <% end %>
   <% end %>
