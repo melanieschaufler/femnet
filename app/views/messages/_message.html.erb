@@ -1,7 +1,33 @@
-<div class="message-container" id="message-<%= message.id %>">
-  <i class="author">
-    <span><%= message.user.name %></span>
-    <small><%= message.created_at.strftime("%m/%d/%Y at %l:%M%p") %></small>
-  </i>
-  <p><%= message.content %></p>
-</div>
+    <div class="chat-messages">
+      <% if message.user.id == current_user.id %>
+        <div class="receiver-message-container" id="message-<%= message.id %>">
+          <i class="author">
+            <% if message.user.photo.present? %>
+                <%= cl_image_tag message.user.photo.key, id: "message-photo"%>
+            <% else %>
+              <%= image_tag "businesswoman-2.png", id: "message-photo"%>
+            <% end %>
+            <span>You</span>
+            <small><%= message.created_at.strftime("%m/%d/%Y at %l:%M%p") %></small>
+            </i>
+            <p><%= message.content %></p>
+        </div>
+        <% else %>
+        <div class="sender-message-container" id="message-<%= message.id %>">
+          <i class="author">
+            <% if message.user.photo.present? %>
+                <%= cl_image_tag message.user.photo.key, id: "message-photo"%>
+            <% else %>
+              <%= image_tag "businesswoman-2.png", id: "message-photo"%>
+            <% end %>
+            <span><%= message.user.name %></span>
+            <small><%= message.created_at.strftime("%m/%d/%Y at %l:%M%p") %></small>
+            </i>
+            <p><%= message.content %></p>
+        </div>
+      <% end %>
+    </div>
+
+
+
+

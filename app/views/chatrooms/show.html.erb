@@ -1,4 +1,4 @@
-<h1>Your chat with: <%= @chatroom.name %></h1>
+<h1 id="chatroom-headline"><%= @chatroom.name %></h1>
 
 
   <div>
@@ -10,9 +10,6 @@
 
   <%= simple_form_for [@chatroom, @message] do |f| %>
     <%= f.input :content, label: false, placeholder: "Write your message and press enter to send it" %>
-    <%= f.submit "Send message", class: "btn btn-info"  %>
+    <%= f.submit "Send message", class: "btn btn-info", id:"send-button" %>
   <% end %>
-  <br>
-  <br>
-  <%= link_to "Your Dashboard", dashboard_index_path, class: "btn btn-info" %>
 </div>
