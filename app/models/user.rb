@@ -16,4 +16,8 @@ class User < ApplicationRecord
 
   has_one_attached :photo
   has_one_attached :resume
+
+  scope :filter_by_profession, -> (profession_array) { where profession: profession_array }
+  scope :filter_by_mentor, -> (user) { where(mentor: true).where.not(id: user) }
+  scope :filter_by_interest, -> (interest_array) { where interest: interest_array }
 end

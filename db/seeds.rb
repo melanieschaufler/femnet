@@ -17,14 +17,13 @@ interest12 = {name: "Culture"}
 interest13 = {name: "Failures & Learnings"}
 interest14 = {name: "Emotional Intelligence"}
 interest15 = {name: "Entrepreneurial Mindset"}
-interest16 = {name: "Longlife Learning"}
 interest17 = {name: "Agile Working"}
 interest18 = {name: "Ethics"}
 interest19 = {name: "Creativity"}
 interest20 = {name: "Social Media"}
 interest21 = {name: "Communication"}
 
-[interest1, interest2, interest3, interest4, interest5, interest6, interest7, interest8, interest9, interest10, interest11, interest12, interest13, interest14, interest15, interest16, interest17, interest18, interest19, interest20, interest21].each do |attributes|
+[interest1, interest2, interest3, interest4, interest5, interest6, interest7, interest8, interest9, interest10, interest11, interest12, interest13, interest14, interest15, interest17, interest18, interest19, interest20, interest21].each do |attributes|
 interest = Interest.create!(attributes)
 puts "Created #{interest.name}"
 end

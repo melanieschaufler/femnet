@@ -1,8 +1,20 @@
-<% if current_user.mentor  %>
-<h1>All mentees</h1>
-<% else %>
-<h1> Find your mentor</h1>
-<% end %>
+<% professions = ["Brand & Public Relations",
+                  "Consulting",
+                  "Data Science & Analytics",
+                  "Entrepreneurship",
+                  "Finance, Accounting & Controlling",
+                  "Freelancing",
+                  "Human Ressources & Recruiting",
+                  "Infrastructures & Security",
+                  "Leadership & Management",
+                  "Marketing & Growth",
+                  "Product Management",
+                  "Sales",
+                  "Software Engineering",
+                  "Strategy & Business Development",
+                  "Sustainability",
+                  "UX, Design & User Research",
+                  "Web Development"] %>
 
 <div class="search-wrapper">
 <%= form_tag users_path, method: :get do %>
@@ -12,10 +24,30 @@
     id: "searchfield",
     placeholder: "Find a Mentor"
   %>
+
+  <ul class="filter-professions">
+  <p><strong>Profession</strong></p>
+  <% professions.each do |profession| %>
+      <li>
+        <%= check_box_tag 'professions[]', profession -%>
+        <%= profession -%>
+      </li>
+  <% end %>
+  </ul>
+  <ul class="filter-interests">
+  <p><strong>Interests</strong></p>
+  <% @interests.each do |interest| %>
+      <li>
+        <%= check_box_tag 'interests[]', interest.name -%>
+        <%= interest.name -%>
+      </li>
+  <% end %>
+  </ul>
   <%= submit_tag "Search", class: "button-primary", id: "search-btn"%>
 <% end %>
 </div>
 
+<p><%= @users.count %> result(s) found</p>
 <div class="cards-workspaces">
   <% @users.each do |user| %>
    <div class="card">
