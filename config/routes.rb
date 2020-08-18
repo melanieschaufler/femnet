@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   #   get :my_mentors
   #   get :my_meentees
   # end
+  mount ActionCable.server => "/cable"
 end
