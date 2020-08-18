@@ -61,14 +61,14 @@
                 required: true,
                 hint: ('Answer needs to be 100 to 500 characters long.'),
                 input_html: { autocomplete: "answer3" } %>
-    <%= f.label "Tick if you want to be a Mentor" %>
+    <%= f.label "Tick if you want to be a Mentor"%>
     <%= f.check_box :mentor,
                 input_html: { autocomplete: "mentor" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class: "btn-primary" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
