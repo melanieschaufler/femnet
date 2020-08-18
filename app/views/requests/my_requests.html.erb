@@ -7,33 +7,32 @@
       <ul>
         <li><%= request.asker.name %></li>
         <% if request.status === "Pending" %>
-        <%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %>
-      <% else %>
-      <p>Status: <%= request.status %></p>
-         <% if request.chatroom %>
-               <%= request.chatroom.messages.last.user.name %> : <%= request.chatroom.messages.last.content %> ( <%= request.chatroom.messages.last.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )
-        <%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
+          <%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %>
+        <% else %>
+          <p>Status: <%= request.status %></p>
+            <% if request.chatroom %>
+              <% unless request.chatroom.messages.empty?  %>
+                <%= request.chatroom.messages.last.user.name %> : <%= request.chatroom.messages.last.content %> ( <%= request.chatroom.messages.last.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )
+                <%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
+              <% end %>
+            <% end %>
         <% end %>
-      <% end %>
       </ul>
     <% end %>
-    <% else %>
+  <% else %>
     <h1>Messages</h1>
     <h3>Connect with your Mentors</h3>
       <ul> <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
         <li><h3><%= request.receiver.name %></h3></li>
-         <% unless request.chatroom %>
-        <%= simple_form_for [request, Chatroom.new] do |f| %>
-          <%= f.submit "Start chatting", class: "btn btn-primary" %>
+        <% if request.chatroom.messages.empty? %>
+          <%= link_to "Start chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
+        <% else %>
+            <%= request.chatroom.messages.last.user.name %> : <%= request.chatroom.messages.last.content %> ( <%= request.chatroom.messages.last.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )
+          <%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
         <% end %>
-      <% else %>
-         <%= request.chatroom.messages.last.user.name %> : <%= request.chatroom.messages.last.content %> ( <%= request.chatroom.messages.last.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )
-              <%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
       <% end %>
-    <% end %>
-        <% end %>
-      </ul>
-</div>
+    </ul>
+  <% end %>
 
 
 <!-- <%# @my_requests.each do |request| %>
