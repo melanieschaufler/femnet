@@ -44,13 +44,17 @@
       </div>
       <div class="modal-body">
         <% if @user.resume.present?  %>
-           <%= cl_image_tag @user.resume.key, format: :png %>
+          <%= cl_image_tag @user.resume.key, format: :png, id: "resume"%>
         <% else %>
           <p>No CV available</p>
         <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Download</button>
+        <a href="cl_image_tag @user.resume.key.url" type="button" class= "btn-secondary" data-dismiss="modal">Download</a>
+
+        <%#= link_to "Download", @user.resume.key, format: :png, id: "resume", class: "edit-btn"%>
       </div>
     </div>
   </div>
