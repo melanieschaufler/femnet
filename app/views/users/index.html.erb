@@ -16,13 +16,15 @@
                   "UX, Design & User Research",
                   "Web Development"] %>
 
+<div class="wrapper-all">
 <div class="search-wrapper">
+
 <%= form_tag users_path, method: :get do %>
   <%= text_field_tag :query,
     params[:query],
     class: "form-control",
     id: "searchfield",
-    placeholder: "Find a Mentor"
+    placeholder: "Search for name or city"
   %>
 
   <ul class="filter-professions">
@@ -47,15 +49,20 @@
 <% end %>
 </div>
 
-<p><%= @users.count %> result(s) found</p>
 
-<div class="all-cards">
+<p id="search-results"><%= @users.count %> result(s) found</p>
+<button class="switch-button" onclick="getElementById('card-wrapper').style.opacity = '0'; getElementById('map').style.opacity = '1';">Map</button>
+<button class="switch-button" onclick="getElementById('card-wrapper').style.opacity = '1'; getElementById('map').style.opacity = '0';">List</button>
+
+
+<div class="all-cards" id="card-wrapper">
+
   <% @users.each do |user| %>
     <div class="card">
        <% if user.photo.present? %>
-        <%= cl_image_tag user.photo.key, id: "profile-photo"%>
+          <%= cl_image_tag user.photo.key, id: "profile-photo"%>
        <% else %>
-        <%= image_tag "businesswoman.png", id: "profile-photo"%>
+          <%= image_tag "businesswoman.png", id: "profile-photo"%>
        <% end %>
        <div class="information">
           <p><strong><%= user.city %></strong></br></p>
@@ -65,7 +72,7 @@
           <% if user.user_interests.present? %>
             <% user.user_interests.each do |interest| %>
               <div id="name-interest">
-                  <%= interest.interest.name %></br>
+                <%= interest.interest.name %></br>
               </div>
             <% end %>
           <% end %>
@@ -77,9 +84,10 @@
     </div>
   <% end %>
 </div>
+</div>
 
 <div class="map" id="map"
-     style="width: 50%; height: 300px;"
+     style="height: 1400px;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>

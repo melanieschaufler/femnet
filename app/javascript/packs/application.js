@@ -38,3 +38,7 @@ import { initMapbox } from '../plugins/init_mapbox';
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
 })
+
+function hide(target) {
+    document.getElementById(target).style.display = 'none';
+}
