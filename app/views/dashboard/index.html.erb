@@ -32,7 +32,7 @@
   <% if @my_messages.first.nil?  %>
   <div class = no-messages>
     <h2>You dont have any messages</h2>
-  <%= link_to "Find your Mentor", users_path, class: "button-primary", id:"header-btn"%>
+    <%= link_to "Find your Mentor", users_path, class: "button-primary", id:"header-btn"%>
   </div>
   <% else %>
     <% @my_messages.each do |message| %>
@@ -62,7 +62,7 @@
        <h3><%= image_tag "growth.png", class: "dashboard-icon"%> Your accepted Mentors</h3>
       <ul> <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
        <div class = "card-mentor-dashboard">
-         <li><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></li>
+         <h2><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></h2>
            <ul class="personal-list">
             <li><%= image_tag "shape-03.png" %><strong><%= request.receiver.age %></strong> years old</li>
             <li><%= image_tag "shape-03.png" %>based in <strong><%= request.receiver.city %></strong></li>
@@ -77,23 +77,21 @@
 <!-- Requests overview -->
 
 <div class="card-requests">
-  <h3><%= image_tag "match.png", class: "dashboard-icon"%> Your pending Mentor Requests</h3>
+  <h3><%= image_tag "match.png", class: "dashboard-icon"%> Your pending Requests</h3>
     <% if current_user.mentor %>
       <% @my_requests.each do |request| %>
       <ul>
         <% if request.status === "Pending" %>
         <div class="dashboard-user-card">
-          <h2><%= request.asker.name %></h2>
-          <%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %>
+          <h2><%= image_tag "shape-03.png" %><%= request.asker.name %></h2> <%= link_to "Accept", accept_request_path(request),class: "btn btn-info" %> <%= link_to "Ignore", ignore_request_path(request) %>
         </div>
       <% end %>
       </ul>
     <% end %>
   <% else %>
       <ul> <% current_user.requests_as_asker.where(status: "Pending").each do |request| %>
-        <div class="dasboard-user-card">
+        <div class="dashboard-user-card">
           <h2><%= image_tag "shape-03.png" %><%= request.receiver.name %></h2>
-
         </div>
     <% end %>
   <% end %>
