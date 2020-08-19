@@ -1,4 +1,9 @@
 
+<!-- Head -->
+<% content_for :meta_title, "#{DEFAULT_META["meta_product_name"]} | #{@user.name} " %>
+
+<!-- Body -->
+
 <% if current_user == @user %>
   <div class="wrapper-button">
   <%= link_to "Edit Profile", edit_user_path(current_user), class: "button-primary"%>
