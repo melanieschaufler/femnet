@@ -29,8 +29,7 @@
             <% end %>
             <%= request.asker.name%> (<%=request.asker.age%>)</td>
         <% if request.status === "Pending" %>
-          <td></td>
-          <td></td>
+          <td id="message-cell"></td>
           <td></td>
           <td id="button-cell"><%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %></td>
         <% else %>
@@ -69,8 +68,7 @@
           <%= request.receiver.name%> (<%=request.receiver.age%>)</td>
 
         <% if request.chatroom.messages.empty? %>
-          <td></td>
-          <td></td>
+          <td id="message-cell"></td>
           <td></td>
           <td id="button-cell"><%= link_to "Start chatting", request_chatroom_path(request, request.chatroom), class: "button-primary" %></td>
         <% else %>
