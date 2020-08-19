@@ -97,7 +97,7 @@
     text-align: center;
     padding: 20px;
     margin-left: 48px;
-    margin-bottom: 100px;
+    margin-bottom: 124px;
     background-color: white;
     border-radius: 10px;
     text-align: center;
@@ -105,12 +105,16 @@
     #profile-photo {
     width: 150px;
     height: 150px;
-    margin-left: 20px;
+    margin: 0 auto;
     border-radius: 50%;
-    position: absolute;
-    bottom: 290px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    margin-top: -100px;
   }
 }
+
+
+
 
 .information {
 
