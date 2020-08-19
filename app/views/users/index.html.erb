@@ -4,7 +4,7 @@
 
 <!-- Body -->
 
-<% professions = ["Brand & Public Relations",
+  <% professions = ["Brand & Public Relations",
                   "Consulting",
                   "Data Science & Analytics",
                   "Entrepreneurship",
@@ -22,46 +22,45 @@
                   "UX, Design & User Research",
                   "Web Development"] %>
 
-<div class="wrapper-all">
-<div class="search-wrapper">
-
-<%= form_tag users_path, method: :get do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    id: "searchfield",
-    placeholder: "Search for name or city"
-  %>
-
-  <ul class="filter-professions">
-  <p><strong>Profession</strong></p>
-  <% professions.each do |profession| %>
-      <li>
-        <%= check_box_tag 'professions[]', profession -%>
-        <%= profession -%>
-      </li>
-  <% end %>
-  </ul>
-  <ul class="filter-interests">
-  <p><strong>Interests</strong></p>
-  <% @interests.each do |interest| %>
-      <li>
-        <%= check_box_tag 'interests[]', interest.id -%>
-        <%= interest.name -%>
-      </li>
-  <% end %>
-  </ul>
-  <%= submit_tag "Search", class: "button-primary", id: "search-btn"%>
-<% end %>
+<div class="main-container">
+  <div class="search-container">
+    <%= form_tag users_path, method: :get do %>
+    <%= text_field_tag :query,
+       params[:query],
+       class: "form-control",
+       id: "searchfield",
+       placeholder: "Search for name or city"
+       %>
+    <ul class="filter-professions">
+       <p><strong>Profession</strong></p>
+       <% professions.each do |profession| %>
+       <li>
+          <%= check_box_tag 'professions[]', profession -%>
+          <%= profession -%>
+       </li>
+       <% end %>
+    </ul>
+    <ul class="filter-interests">
+       <p><strong>Interests</strong></p>
+       <% @interests.each do |interest| %>
+       <li>
+          <%= check_box_tag 'interests[]', interest.id -%>
+          <%= interest.name -%>
+       </li>
+       <% end %>
+    </ul>
+    <%= submit_tag "Search", class: "button-primary", id: "search-btn"%>
+    <% end %>
 </div>
 
+  <div class="card-container">
+    <ul>
+      <li><a class="switch-button" onclick="getElementById('card-wrapper').style.display = ''; getElementById('map').style.display = 'none';"><i class="fa fa-list"></i></a></li>
+      <li><a class="switch-button" onclick="getElementById('card-wrapper').style.display = 'none'; getElementById('map').style.display = 'block';"><i class="fa fa-map"></i></a></li>
+    </ul>
+    <p id="search-results"><strong><%= @users.count %></strong> result(s) found</p>
 
-<p id="search-results"><%= @users.count %> result(s) found</p>
-
-<a class="switch-button" onclick="getElementById('card-wrapper').style.display = 'none'; getElementById('map').style.display = 'block';"><i class="fa fa-map"></i></a>
-<a class="switch-button" onclick="getElementById('card-wrapper').style.display = ''; getElementById('map').style.display = 'none';"><i class="fa fa-list"></i></a>
-
-<div class="all-cards" id="card-wrapper">
+  <div class="all-cards" id="card-wrapper">
 
   <% @users.each do |user| %>
     <div class="card">
@@ -87,13 +86,26 @@
       <div class="read-more-button">
        <%= link_to "Read More", user_path(user), class: "button-primary" %>
       </div>
+      </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+
+  <div class="map" id="map"
+       style="height: 1400px;"
+       data-markers="<%= @markers.to_json %>"
+       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
 </div>
 
-<div class="map" id="map"
-     style="height: 1400px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+
 </div>
+
+
+
+
+
+
+
+
+
