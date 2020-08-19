@@ -1,17 +1,21 @@
 #chatroom-headline{
+  margin-top: 0px;
   margin-bottom: 48px;
+}
+
+#chatroom-upper-headline {
+  margin-top: 50px;
 }
 
 
   .sender-message-container {
-    min-height: 100px;
     text-align: left;
     border-line: 1px solid;
     border-radius: 5px;
     padding: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 48px;
     float: left;
-    background-color: $light-rose;
+    background-color: rgba(203, 173, 172, 0.4);
     width: 60%;
 
     #message-photo{
@@ -32,12 +36,11 @@
   .receiver-message-container {
     text-align: right;
     float:right;
-    min-height: 100px;
     background-color: $light-gray;
     border-line: 1px solid;
     border-radius: 5px;
     padding: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 48px;
     width: 60%;
 
    #message-photo{
@@ -48,6 +51,14 @@
   }
 
   #send-button {
+    background-color: rgba(203, 173, 172, 0.4);
+    border: none;
+    padding: 12px;
+    margin-top: 12px;
     margin-bottom: 48px;
+  }
+
+  #send-button:hover {
+    background-color: rgba(203, 173, 172, 1);
   }
 
