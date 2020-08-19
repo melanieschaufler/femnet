@@ -42,17 +42,16 @@
   <% else %>
   <div class="dashboard-messages">
     <% @my_messages.each do |message| %>
-        <div class="dashboard-message-container">
-          <span><%= message.user.name %>:</span>
-          <small>( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p")%>)</small>
-          <p><%= message.content %></p>
+    <div class="dashboard-message-container">
+        <span><%= message.user.name %>:</span> <br>
+        <small>( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p")%>)</small>
+        <p><%= message.content %></p>
         <div class = "message-button">
         <%= link_to "Keep chatting with her" , request_chatroom_path(message.chatroom.request, message.chatroom), class: "button-primary" %>
-      </div>
-      </div>
-
-      </div>
+        </div>
+    </div>
     <% end %>
+  </div>
 
   <% end %>
   </div>
@@ -69,43 +68,43 @@
     <div class = "card-mentors">
          <% @my_requests.each do |request| %>
             <% if request.status === "Accepted" %>
-              <div class="card" id="dashboard-mentor">
+              <div class="dashboard-cards">
                 <% if request.asker.photo.present? %>
                   <%= cl_image_tag request.asker.photo.key, id: "profile-photo"%>
                 <% else %>
                   <%= image_tag "businesswoman-2.png", id: "profile-photo"%>
                 <% end %>
-                <div class="information">
+                <div id="information">
                   <p><strong><%= request.asker.city %></strong></br></p>
-                  <span><%= request.asker.name %></h3>
+                  <h3><%= request.asker.name %></h3>
                   <p><strong><%= request.asker.profession %></strong></br></p>
-                </div>
-                <div class="read-more-button">
+                  <div class="read-more-button">
                   <%= link_to "Read More", user_path(request.asker), class: "button-primary" %>
+                </div>
                 </div>
               </div>
             <% end %>
         <% end %>
     </div>
-  <% else %>
 
+  <% else %>
     <h3><%= image_tag "growth.png", class: "dashboard-icon"%> Your accepted Mentors</h3>
     <div class = "card-mentors">
         <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
-          <div class="card" id="dashboard-mentor">
+          <div class="dashboard-cards">
             <% if request.receiver.photo.present? %>
               <%= cl_image_tag request.receiver.photo.key, id: "profile-photo"%>
             <% else %>
               <%= image_tag "businesswoman-2.png", id: "profile-photo"%>
             <% end %>
-            <div class="information">
+            <div id="information">
               <p><strong><%= request.receiver.city %></strong></br></p>
               <h3><%= request.receiver.name %></h3>
               <p><strong><%= request.receiver.profession %></strong></br></p>
-          </div>
-            <div class="read-more-button">
+              <div class="read-more-button">
               <%= link_to "Read More", user_path(request.receiver), class: "button-primary" %>
             </div>
+          </div>
           </div>
         <% end %>
     </div>
@@ -119,7 +118,6 @@
   <h3><%= image_tag "match.png", class: "dashboard-icon"%> Your pending Requests</h3>
     <% if current_user.mentor %>
       <% @my_requests.each do |request| %>
-      <ul>
         <% if request.status === "Pending" %>
         <div class="dashboard-user-card" id= "user-card-mentor">
           <h2><%= image_tag "shape-03.png" %><%= request.asker.name %></h2>
@@ -128,10 +126,9 @@
           </div>
         </div>
       <% end %>
-      </ul>
     <% end %>
   <% else %>
-      <ul> <% current_user.requests_as_asker.where(status: "Pending").each do |request| %>
+       <% current_user.requests_as_asker.where(status: "Pending").each do |request| %>
         <div class="dashboard-user-card">
           <h2><%= image_tag "shape-03.png" %><%= request.receiver.name %></h2>
         </div>
