@@ -1,10 +1,11 @@
 .footer-femnet {
+  height: 130px;
+  width: 1200px;
   background: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 160px;
-  padding: 0px 50px;
+  padding: 50px;
 
   p {
   color: #3F3F3F;
@@ -14,15 +15,21 @@
 }
 
 .footer-links {
+  width: 75%;
   display: flex;
   align-items: center;
 }
 
-.footer-social a {
-  text-decoration: none;
-  font-size: 24px;
-  padding: 0px 10px;
-  color: #AA7675;
+ .footer-social {
+    width: 25%;
+    display: flex;
+
+   a {
+    text-decoration: none;
+    font-size: 24px;
+    padding: 0px 10px;
+    color: #AA7675;
+  }
 }
 
 .footer-links a:hover {
@@ -32,7 +39,8 @@
 .footer-vector {
   position: absolute;
   left: -148px;
-  width: 130%;
+  width: 110.5%;
   float: right;
   z-index: 1;
 }
+

@@ -219,5 +219,23 @@
   padding-bottom: 600px;
 }
 
+.modal-body {
+  color: white;
+  text-align: center;
 
+  p {
+    font-weight: 400;
+    font-size: 32px;
+  }
+}
+
+#create-r {
+  margin-top: 20px;
+  width: 200px;
+
+  #create-request {
+    width: 157px;
+    text-align: center;
+  }
+}
 
