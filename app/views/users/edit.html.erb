@@ -1,3 +1,10 @@
+<!-- Head -->
+
+<% content_for :meta_title, "#{DEFAULT_META["meta_product_name"]} | #{@user.name} " %>
+
+<!-- Body -->
+
+
 <h1>Edit your profile</h1>
 
 <%= render 'form', user: @user %>

@@ -1,3 +1,10 @@
+<!-- Head -->
+
+<% content_for :meta_title, "#{DEFAULT_META["meta_product_name"]} | #{@user.name} Interests " %>
+
+<!-- Body -->
+
+
 <%= simple_form_for(@user_interest) do |f| %>
 
 <div class ="wrapper-interests-edit">
@@ -7,7 +14,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit class: "button-primary" %>
+    <%= f.button :submit, class: "button-primary" %>
   </div>
 <% end %>
 </div>
