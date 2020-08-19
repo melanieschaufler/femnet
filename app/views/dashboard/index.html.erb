@@ -25,6 +25,8 @@
   </div>
   </div>
 
+
+
 <!-- Messages overview -->
 <div class="card-right" id= "card-messages">
   <h3><%= image_tag "communication.png", class: "dashboard-icon"%> Your Messages</h3>
@@ -36,9 +38,13 @@
   </div>
   <% else %>
     <% @my_messages.each do |message| %>
-      <%= message.user.name %> : <%= message.content %> ( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )
-      <%= link_to "Keep chatting", request_chatroom_path(message.chatroom.request, message.chatroom), class: "btn btn-info" %>
+     <div class="dashboard-messages">
+      <h2><%= message.user.name%>:</h2>
+      <p>( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p")%>)</p>
+       <%= message.content %>
+      <%= link_to "Keep chatting", request_chatroom_path(message.chatroom.request, message.chatroom), class: "button-primary" %>
       <% end %>
+      </div>
   <% end %>
   </div>
 </div>
@@ -50,29 +56,52 @@
 
 <div class="card-mentors">
   <% if current_user.mentor %>
-    <h3><%= image_tag "growth.png", class: "dashboard-icon"%> Your Mentees</h3>
+    <h3><%= image_tag "growth.png", class: "dashboard-icon"%> Your accepted Mentees</h3>
       <% @my_requests.each do |request| %>
         <ul>
           <% if request.status === "Accepted" %>
-              <li><%= link_to "#{request.asker.name}", user_path(request.asker) %></li>
+            <div class="card" id="dashboard-mentor">
+          <% if request.asker.photo.present? %>
+            <%= cl_image_tag request.asker.photo.key, id: "profile-photo"%>
+          <% else %>
+            <%= image_tag "businesswoman.png", id: "profile-photo"%>
           <% end %>
+        <div class="information">
+          <p><strong><%= request.asker.city %></strong></br></p>
+          <h3><%= request.asker.name %></h3>
+          <p><strong><%= request.asker.profession %></strong></br></p>
+        </div>
+        <div class="read-more-button">
+          <%= link_to "Read More", user_path(request.asker), class: "button-primary" %>
+        </div>
+      </div>
+      <% end %>
         </ul>
       <% end %>
   <% else %>
-       <h3><%= image_tag "growth.png", class: "dashboard-icon"%> Your accepted Mentors</h3>
+      <h3><%= image_tag "growth.png", class: "dashboard-icon"%> Your accepted Mentors</h3>
       <ul> <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
-       <div class = "card-mentor-dashboard">
-         <h2><%= link_to "#{request.receiver.name}", user_path(request.receiver) %></h2>
-           <ul class="personal-list">
-            <li><%= image_tag "shape-03.png" %><strong><%= request.receiver.age %></strong> years old</li>
-            <li><%= image_tag "shape-03.png" %>based in <strong><%= request.receiver.city %></strong></li>
-            <li><%= image_tag "shape-03.png" %>working in <strong><%= request.receiver.profession %></strong></li>
-          </ul>
-        <% end %>
+      <div class="card" id="dashboard-mentor">
+          <% if request.receiver.photo.present? %>
+            <%= cl_image_tag request.receiver.photo.key, id: "profile-photo"%>
+          <% else %>
+            <%= image_tag "businesswoman.png", id: "profile-photo"%>
+          <% end %>
+        <div class="information">
+          <p><strong><%= request.receiver.city %></strong></br></p>
+          <h3><%= request.receiver.name %></h3>
+          <p><strong><%= request.receiver.profession %></strong></br></p>
+        </div>
+        <div class="read-more-button">
+          <%= link_to "Read More", user_path(request.receiver), class: "button-primary" %>
+        </div>
+      </div>
+    <% end %>
       </ul>
     </div>
   <% end %>
 </div>
+
 
 <!-- Requests overview -->
 

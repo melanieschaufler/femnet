@@ -51,8 +51,8 @@
 
 
 <p id="search-results"><%= @users.count %> result(s) found</p>
-<button class="switch-button" onclick="getElementById('card-wrapper').style.opacity = '0'; getElementById('map').style.opacity = '1';">Map</button>
-<button class="switch-button" onclick="getElementById('card-wrapper').style.opacity = '1'; getElementById('map').style.opacity = '0';">List</button>
+<button class="switch-button" onclick="getElementById('card-wrapper').style.opacity = '0'; getElementById('map').style.display = 'block';">Map</button>
+<button class="switch-button" onclick="getElementById('card-wrapper').style.opacity = '1'; getElementById('map').style.display = 'none';">List</button>
 
 
 <div class="all-cards" id="card-wrapper">

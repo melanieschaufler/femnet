@@ -88,6 +88,33 @@
  }
 }
 
+#dashboard-mentor {
+  width: 240px;
+  margin-left: 27px;
+  margin-top: 69px;
+  margin-bottom: 24px;
+
+}
+
+.dashboard-messages {
+  margin-top: 15px;
+  padding: 5px;
+  text-align: left;
+  margin-left: 3px;
+  display: flex;
+
+  h2 {
+    color: #3F3F3F;
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  img {
+    width: 12px;
+    margin-right: 10px;
+  }
+}
+
 
 
 
