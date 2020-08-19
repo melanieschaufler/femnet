@@ -33,13 +33,13 @@
   <div class="messages-overview">
   <% if @my_messages.first.nil?  %>
   <div class = no-messages>
-    <h2>You dont have any messages</h2>
+    <h2>You dont have any messages </h2>
     <%= link_to "Find your Mentor", users_path, class: "button-primary", id:"header-btn"%>
   </div>
   <% else %>
     <% @my_messages.each do |message| %>
      <div class="dashboard-messages">
-      <h2><%= message.user.name%>:</h2>
+      <h2><%= message.user.name %>:</h2>
       <p>( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p")%>)</p>
        <%= message.content %>
       <%= link_to "Keep chatting", request_chatroom_path(message.chatroom.request, message.chatroom), class: "button-primary" %>
