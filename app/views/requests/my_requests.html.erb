@@ -6,36 +6,81 @@
 
 <!-- <h1>Mentorship requests:</h1> -->
 
+<div class="messages-container">
   <% if current_user.mentor %>
     <h1>Messages</h1>
     <h3>Connect with your Mentees</h3>
-    <% @my_requests.each do |request| %>
-      <ul>
-        <li><%= request.asker.name %></li>
+
+    <table style="width:100%">
+      <tr>
+        <th>From</th>
+        <th>Last Message</th>
+        <th>When</th>
+        <th></th>
+      </tr>
+
+      <% @my_requests.each do |request| %>
+      <tr>
+        <td id="from-cell">
+            <% if request.asker.photo.present? %>
+                <%= cl_image_tag request.asker.photo.key, id: "message-photo"%>
+            <% else %>
+              <%= image_tag "businesswoman-2.png", id: "message-photo"%>
+            <% end %>
+            <%= request.asker.name%> (<%=request.asker.age%>)</td>
         <% if request.status === "Pending" %>
-          <%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td id="button-cell"><%= link_to "Accept", accept_request_path(request) %> <%= link_to "Ignore", ignore_request_path(request) %></td>
         <% else %>
-          <p>Status: <%= request.status %></p>
             <% if request.chatroom %>
               <% unless request.chatroom.messages.empty?  %>
-                <%= request.chatroom.messages.last.user.name %> : <%= request.chatroom.messages.last.content %> ( <%= request.chatroom.messages.last.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )
-                <%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
+                <td id="message-cell"><em><%= request.chatroom.messages.last.user.name %></em> : <%= request.chatroom.messages.last.content %></td>
+                <td><%= request.chatroom.messages.last.created_at.strftime("%m/%d/%Y at %l:%M%p") %><td>
+                <td id="button-cell"><%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "button-primary" %></td>
               <% end %>
             <% end %>
         <% end %>
-      </ul>
+      </tr>
     <% end %>
+    </table>
+
   <% else %>
     <h1>Messages</h1>
     <h3>Connect with your Mentors</h3>
-      <ul> <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
-        <li><h3><%= request.receiver.name %></h3></li>
+
+    <table style="width:100%">
+      <tr>
+        <th>From</th>
+        <th>Last Message</th>
+        <th>When</th>
+        <th></th>
+      </tr>
+
+      <% current_user.requests_as_asker.where(status: "Accepted").each do |request| %>
+      <tr>
+        <td id="from-cell">
+           <% if request.receiver.photo.present? %>
+                <%= cl_image_tag request.receiver.photo.key, id: "message-photo"%>
+            <% else %>
+              <%= image_tag "businesswoman-2.png", id: "message-photo"%>
+            <% end %>
+          <%= request.receiver.name%> (<%=request.receiver.age%>)</td>
+
         <% if request.chatroom.messages.empty? %>
-          <%= link_to "Start chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td id="button-cell"><%= link_to "Start chatting", request_chatroom_path(request, request.chatroom), class: "button-primary" %></td>
         <% else %>
-            <%= request.chatroom.messages.last.user.name %> : <%= request.chatroom.messages.last.content %> ( <%= request.chatroom.messages.last.created_at.strftime("%m/%d/%Y at %l:%M%p") %> )
-          <%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "btn btn-info" %>
+          <td id="message-cell"><em><%= request.chatroom.messages.last.user.name %></em> : <%= request.chatroom.messages.last.content %></td>
+          <td><%= request.chatroom.messages.last.created_at.strftime("%m/%d/%Y at %l:%M%p") %></td>
+          <td id="button-cell"><%= link_to "Keep chatting", request_chatroom_path(request, request.chatroom), class: "button-primary" %></td>
         <% end %>
-      <% end %>
-    </ul>
-  <% end %>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
+
+</div>

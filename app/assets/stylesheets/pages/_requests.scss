@@ -1,0 +1,37 @@
+.messages-container {
+  height: 500px;
+}
+
+table {
+  margin-top: 48px;
+  margin-bottom: 48px;
+
+  th {
+    font-weight: 300;
+    color: $bordeaux;
+  }
+
+  td {
+    width: 30%;
+    height: 80px;
+    border-bottom: 1px solid $light-gray;
+    font-weight: 300;
+  }
+
+  #button-cell {
+    text-align: right;
+  }
+
+  #from-cell {
+    font-weight: 500;
+    width: 20%;
+
+    img{
+      margin-right: 4px;
+    }
+  }
+
+  #message-cell {
+    width: 30%;
+  }
+}
