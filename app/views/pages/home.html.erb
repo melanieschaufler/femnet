@@ -17,7 +17,8 @@
     A mentor will help you identify areas for improvement, establish connections, <br> and create opportunities. It’s up to you as to
     how hard you want to <br> push yourself,but the insights you can gain about yourself and your chosen <br> field from a passionate
     and experienced mentor can give you an <br> unprecedented edge over others in developing
-    your career. <br> <%= link_to "Sign Up", new_user_registration_path, class: "button-primary" %></p>
+    your career.</p> <br>
+    <br> <%= link_to "Sign Up", new_user_registration_path, class: "button-primary", id: "sign-up" %>
 
 
 <div class ="body-wrapper-one">
@@ -49,8 +50,9 @@
     <p>"I always thought about founding my own start-up,<br>
      however wasn't really sure where to start. <br>
     Getting advice from Cecile on how to bootstrap <br>
-    from scratch helped to kick-it off." </p>
-    <p>- SINA, 24</p>
+    from scratch helped to kick-it off." <br> <br>
+    - SINA, 24</p>
+  <%= image_tag 'shape-02.png', class: "background-image"%>
   </div>
 
     <div class= "cards-how-to">
@@ -72,11 +74,12 @@
 
       <div class="card-how-to">
         <%= image_tag 'number-03.png', class: "header-image"%>
-        <div class= "card-how-to-content">
+        <div class= "card-how-to-content" id="last-content">
           <h4>It’s a match - Your mentor accept your request</h4>
         </div>
       </div>
-      <%= link_to "Sign Up", new_user_registration_path, class: "button-primary" %>
+      <br>
+      <%= link_to "Sign Up", new_user_registration_path, class: "button-primary"%>
     </div>
   </div>
 
