@@ -13,9 +13,11 @@ table {
 
   td {
     width: 30%;
-    height: 80px;
+    min-height: 70px;
     border-bottom: 1px solid $light-gray;
     font-weight: 300;
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 
   #button-cell {
@@ -33,5 +35,6 @@ table {
 
   #message-cell {
     width: 30%;
+    padding-right: 24px;
   }
 }
