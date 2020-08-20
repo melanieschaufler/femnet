@@ -14,13 +14,17 @@
   margin-right: 12px;
 }
 
+#dashboard-icon-card {
+    width: 35px;
+    margin-right: 12px;
+}
+
 .card-mentors-wrapper {
   position: relative;
   z-index:100;
-  margin-top: 100px;
+  margin-top: 48px;
   background-color: white;
   width: 100%;
-  min-height: 473px;
   border-radius: 10px;
   padding: 24px;
   padding-bottom: 0;
@@ -39,11 +43,9 @@
 .card-requests {
   position: relative;
   z-index:100;
-  margin-top: 48px;
   margin-bottom: 200px;
   background-color: white;
   width: 100%;
-  min-height: 473px;
   border-radius: 10px;
   padding: 24px;
   padding-left: 0;
@@ -148,7 +150,7 @@
     box-shadow: 0 0 5px rgb(230,230,230);
     text-align: center;
     padding: 20px;
-    margin-bottom: 124px;
+    margin-bottom: 48px;
     background-color: white;
     border-radius: 10px;
     text-align: center;
@@ -184,7 +186,6 @@
 #information {
     padding-top: 31px;
     font-size: 18px;
-    height: 400px;
   }
 
 #ignore {

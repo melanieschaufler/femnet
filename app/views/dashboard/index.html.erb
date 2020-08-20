@@ -31,6 +31,7 @@
 
 
 <!-- Messages overview -->
+
 <div class="card-right" id= "card-messages">
   <h3><%= image_tag "communication.png", class: "dashboard-icon"%> Your Messages</h3>
   <div class="messages-overview">
@@ -42,14 +43,16 @@
   <% else %>
   <div class="dashboard-messages">
     <% @my_messages.each do |message| %>
-    <div class="dashboard-message-container">
-        <span><%= message.user.name %>:</span> <br>
-        <small>( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p")%>)</small>
+      <% if message %>
+      <div class="dashboard-message-container">
+        <small><%= message.created_at.strftime("%m/%d/%Y at %l:%M%p")%></small></br>
+        <span><%= message.user.name %>:</span>
         <p><%= message.content %></p>
         <div class = "message-button">
-        <%= link_to "Keep chatting with her" , request_chatroom_path(message.chatroom.request, message.chatroom), class: "button-primary" %>
+        <%= link_to "Keep chatting" , request_chatroom_path(message.chatroom.request, message.chatroom), class: "button-primary" %>
         </div>
-    </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
@@ -79,7 +82,9 @@
                   <h3><%= request.asker.name %></h3>
                   <p><strong><%= request.asker.profession %></strong></br></p>
                   <div class="read-more-button">
-                  <%= link_to "Read More", user_path(request.asker), class: "button-primary" %>
+                  <%= image_tag "communication.png", id: "dashboard-icon-card"%><%= link_to "Let's chat" , request_chatroom_path(request, request.chatroom), class: "button-primary" %><br><br>
+                  <%= image_tag "match.png", id: "dashboard-icon-card"%><%= link_to "Read More", user_path(request.receiver), class: "button-primary" %>
+                </div>
                 </div>
                 </div>
               </div>
@@ -100,10 +105,10 @@
             <div id="information">
               <p><strong><%= request.receiver.city %></strong></br></p>
               <h3><%= request.receiver.name %></h3>
-              <p><strong><%= request.receiver.profession %></strong></br></p>
-                <div class="read-more-button">
-                <%= link_to "Read More", user_path(request.receiver), class: "button-primary" %>
-                </div>
+              <p><strong><%= request.receiver.profession %></strong></br></p><br>
+              <div class="read-more-button">
+              <%= image_tag "communication.png", id: "dashboard-icon-card"%><%= link_to "Let's chat" , request_chatroom_path(request, request.chatroom), class: "button-primary" %><br><br>
+              <%= image_tag "match.png", id: "dashboard-icon-card"%><%= link_to "Read More", user_path(request.receiver), class: "button-primary" %>
             </div>
           </div>
         <% end %>
