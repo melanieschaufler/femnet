@@ -1,5 +1,5 @@
 <!-- Head -->
-<% content_for :meta_title, " Femnet | Dashboard" %>
+
 
 <h1>Hi, <%= current_user.name %>!</h1>
 
@@ -101,10 +101,10 @@
               <p><strong><%= request.receiver.city %></strong></br></p>
               <h3><%= request.receiver.name %></h3>
               <p><strong><%= request.receiver.profession %></strong></br></p>
-              <div class="read-more-button">
-              <%= link_to "Read More", user_path(request.receiver), class: "button-primary" %>
+                <div class="read-more-button">
+                <%= link_to "Read More", user_path(request.receiver), class: "button-primary" %>
+                </div>
             </div>
-          </div>
           </div>
         <% end %>
     </div>
@@ -128,11 +128,25 @@
       <% end %>
     <% end %>
   <% else %>
+  <div class = "card-mentors">
        <% current_user.requests_as_asker.where(status: "Pending").each do |request| %>
-        <div class="dashboard-user-card">
-          <h2><%= image_tag "shape-03.png" %><%= request.receiver.name %></h2>
-        </div>
+            <div class="dashboard-cards">
+            <% if request.receiver.photo.present? %>
+              <%= cl_image_tag request.receiver.photo.key, id: "profile-photo"%>
+            <% else %>
+              <%= image_tag "businesswoman-2.png", id: "profile-photo"%>
+            <% end %>
+            <div id="information">
+              <p><strong><%= request.receiver.city %></strong></br></p>
+              <h3><%= request.receiver.name %></h3>
+              <p><strong><%= request.receiver.profession %></strong></br></p>
+                <div class="read-more-button">
+                <%= link_to "Read More", user_path(request.receiver), class: "button-primary" %>
+                </div>
+            </div>
+          </div>
     <% end %>
+    </div>
   <% end %>
 </div>
 
