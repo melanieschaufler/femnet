@@ -43,14 +43,16 @@
   <% else %>
   <div class="dashboard-messages">
     <% @my_messages.each do |message| %>
-    <div class="dashboard-message-container">
-        <span><%= message.user.name %>:</span> <br>
-        <small>( <%= message.created_at.strftime("%m/%d/%Y at %l:%M%p")%>)</small>
+      <% if message %>
+      <div class="dashboard-message-container">
+        <small><%= message.created_at.strftime("%m/%d/%Y at %l:%M%p")%></small></br>
+        <span><%= message.user.name %>:</span>
         <p><%= message.content %></p>
         <div class = "message-button">
-        <%= link_to "Keep chatting with her" , request_chatroom_path(message.chatroom.request, message.chatroom), class: "button-primary" %>
+        <%= link_to "Keep chatting" , request_chatroom_path(message.chatroom.request, message.chatroom), class: "button-primary" %>
         </div>
-    </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
